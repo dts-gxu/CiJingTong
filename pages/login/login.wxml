@@ -1,0 +1,34 @@
+<!--pages/login/login.wxml-->
+<view class="container">
+  <view class="logo-container">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <text class="app-title">词境通</text>
+    <text class="app-subtitle">基于AI驱动的汉语词汇学习方案</text>
+  </view>
+  
+  <view class="login-card">
+    <view class="title">学生身份验证</view>
+    <view class="subtitle">请输入您的学号和姓名进行验证</view>
+    
+    <form bindsubmit="login">
+      <view class="form-item">
+        <view class="form-label">学号</view>
+        <input class="form-input" type="text" placeholder="请输入学号" bindinput="onInputChange" data-field="studentId" value="{{studentId}}" confirm-type="next" />
+      </view>
+      
+      <view class="form-item">
+        <view class="form-label">姓名</view>
+        <input class="form-input" type="text" placeholder="请输入姓名" bindinput="onInputChange" data-field="name" value="{{name}}" confirm-type="done" />
+      </view>
+      
+      <view class="error-message" wx:if="{{errorMessage}}">{{errorMessage}}</view>
+      
+      <button class="primary-button" form-type="submit" loading="{{isLoading}}">登录</button>
+    </form>
+  </view>
+  
+  <view class="footer">
+    <text>词境通 © 2025</text>
+    <text style="display:block; margin-top:20rpx;">桂ICP备2025065950号</text>
+  </view>
+</view> 

@@ -1,0 +1,119 @@
+<!--pages/learn/learn.wxml-->
+<view class="container">
+  <!-- 进度条 -->
+  <view class="progress-header">
+    <progress percent="{{progressPercent}}" stroke-width="3" activeColor="#4CAF50" backgroundColor="#E0E0E0" />
+    <text class="progress-text">{{currentIndex + 1}}/{{totalWords}}</text>
+  </view>
+  
+  <!-- 词语卡片 -->
+  <view class="word-card">
+    <text class="pinyin">{{currentWord.pinyin}}</text>
+    <text class="word-text">{{currentWord.word}}</text>
+    
+    <!-- 音频控制区域 -->
+    <view class="audio-controls">
+      <!-- 播放发音按钮 -->
+      <view class="audio-button {{isPlayingAudio ? 'playing' : ''}}" bindtap="playPronunciation">
+        <image class="audio-icon" src="/images/yinpin.png" mode="aspectFit"></image>
+        <text class="audio-text">{{isPlayingAudio ? '停止' : '播放'}}</text>
+      </view>
+      
+      <!-- 录音按钮 - 管理员功能 -->
+      <block wx:if="{{isAdmin}}">
+        <view class="audio-button {{isRecording ? 'recording' : ''}}" bindtap="toggleRecording" bindlongpress="startRecording" bindtouchend="stopRecording">
+          <image class="audio-icon" src="/images/record.png" mode="aspectFit"></image>
+          <text class="audio-text">{{isRecording ? '录音中' : '录音'}}</text>
+        </view>
+        
+        <!-- 上传音频按钮 - 管理员功能 -->
+        <view class="audio-button" bindtap="uploadAudio">
+          <image class="audio-icon" src="/images/upload.png" mode="aspectFit"></image>
+          <text class="audio-text">上传</text>
+        </view>
+      </block>
+    </view>
+    
+    <!-- 录音状态提示 -->
+    <view class="recording-status" wx:if="{{isRecording}}">
+      <view class="recording-indicator">
+        <view class="recording-pulse"></view>
+      </view>
+      <text>录音中...{{recordingDuration}}s</text>
+    </view>
+  </view>
+  
+  <!-- 翻译区域 -->
+  <view class="translations-container">
+    <view class="translation-item">
+      <text class="translation-label">英语翻译</text>
+      <text class="translation-text">{{currentWord.translation}}</text>
+    </view>
+    
+    <view class="translation-item">
+      <text class="translation-label">土库曼语翻译</text>
+      <text class="translation-text">{{currentWord.turkmenTranslation}}</text>
+    </view>
+  </view>
+  
+  <!-- AI解读按钮 -->
+  <view class="ai-explanation-button {{showAIExplanation ? 'active' : ''}}" bindtap="toggleAIExplanation">
+    <image class="ai-icon" src="/images/ai_icon.png" mode="aspectFit"></image>
+    <text>AI解读</text>
+    <view class="toggle-icon">{{showAIExplanation ? '收起' : '展开'}}</view>
+  </view>
+  
+  <!-- AI解读内容 -->
+  <view class="ai-explanation-container" wx:if="{{showAIExplanation}}">
+    <view class="ai-explanation-content" wx:if="{{aiExplanation}}">
+      <view class="ai-explanation-header">
+        <image class="ai-avatar" src="/images/ai_avatar.png" mode="aspectFit"></image>
+        <text class="ai-title">智慧解读</text>
+      </view>
+      <text class="ai-explanation-text">{{aiExplanation}}</text>
+    </view>
+    <view class="ai-explanation-loading" wx:elif="{{isLoadingExplanation}}">
+      <view class="loading-dots">
+        <view class="dot"></view>
+        <view class="dot"></view>
+        <view class="dot"></view>
+      </view>
+      <text>AI正在思考中...</text>
+    </view>
+    <view class="ai-explanation-error" wx:elif="{{explanationError}}">
+      <text>{{explanationError}}</text>
+      <view class="retry-button" bindtap="getAIExplanation">重试</view>
+    </view>
+  </view>
+  
+  <!-- 例句 -->
+  <view class="example-container" wx:if="{{currentWord.example}}">
+    <text class="example-label">例句</text>
+    <view class="example-content">
+      <!-- 不再使用typeof判断，改用isExampleString标志 -->
+      <block wx:if="{{isExampleString}}">
+        <text class="example-chinese">{{currentWord.example}}</text>
+      </block>
+      <block wx:else>
+        <text class="example-chinese">{{currentWord.example.chinese}}</text>
+        <text class="example-pinyin" wx:if="{{currentWord.example.pinyin}}">{{currentWord.example.pinyin}}</text>
+        <text class="example-translation" wx:if="{{currentWord.example.translation}}">{{currentWord.example.translation}}</text>
+      </block>
+    </view>
+  </view>
+  
+  <!-- 配图 - 使用云存储图片 -->
+  <view class="image-container" wx:if="{{currentWord.imagePath}}">
+    <image class="word-image" src="{{currentWord.imagePath}}" mode="aspectFit" binderror="handleImageError"></image>
+    <!-- 调试信息，可选显示 -->
+    <text class="image-debug" wx:if="{{showImageDebug}}">{{imageDebugInfo}}</text>
+  </view>
+  
+  <!-- 底部按钮区域 -->
+  <view class="bottom-actions">
+    <button class="secondary-button" bindtap="goBack">返回</button>
+    <button class="primary-button" bindtap="nextWord">
+      {{isLastWord ? '开始练习' : '下一个'}}
+    </button>
+  </view>
+</view>

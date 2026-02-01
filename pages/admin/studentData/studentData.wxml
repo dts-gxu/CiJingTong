@@ -1,0 +1,101 @@
+<view class="container">
+  <view class="page-header">
+    <view class="page-title">学生学习数据</view>
+    <view class="page-desc">查看学生词汇学习情况</view>
+  </view>
+  
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrap">
+      <input class="search-input" placeholder="搜索学号或姓名" bindinput="handleSearchInput" value="{{searchKeyword}}" />
+      <view class="search-btn" bindtap="searchStudent">搜索</view>
+      <view class="clear-btn" wx:if="{{searchKeyword}}" bindtap="clearSearch">清除</view>
+    </view>
+  </view>
+  
+  <!-- 标签切换 -->
+  <view class="tabs">
+    <view class="tab {{currentTab === 'all' ? 'active' : ''}}" bindtap="switchTab" data-tab="all">全部学生</view>
+    <view class="tab {{currentTab === 'active' ? 'active' : ''}}" bindtap="switchTab" data-tab="active">活跃学生</view>
+    <view class="tab {{currentTab === 'inactive' ? 'active' : ''}}" bindtap="switchTab" data-tab="inactive">不活跃学生</view>
+  </view>
+  
+  <!-- 排序选项 -->
+  <view class="sort-options">
+    <view class="sort-label">排序：</view>
+    <view class="sort-item {{sortField === 'totalWordsLearned' ? 'active' : ''}}" bindtap="setSorting" data-field="totalWordsLearned">
+      学习词量
+      <text class="sort-icon" wx:if="{{sortField === 'totalWordsLearned'}}">{{sortOrder === 'desc' ? '↓' : '↑'}}</text>
+    </view>
+    <view class="sort-item {{sortField === 'correctRate' ? 'active' : ''}}" bindtap="setSorting" data-field="correctRate">
+      正确率
+      <text class="sort-icon" wx:if="{{sortField === 'correctRate'}}">{{sortOrder === 'desc' ? '↓' : '↑'}}</text>
+    </view>
+  </view>
+
+  <!-- 学生列表 -->
+  <view class="student-list" wx:if="{{!isLoading && filteredStudents.length > 0}}">
+    <block wx:for="{{filteredStudents}}" wx:key="studentId">
+      <view class="student-card">
+        <view class="student-header">
+          <view class="student-info">
+            <text class="student-name">{{item.name}}</text>
+            <text class="student-id">学号: {{item.studentId}}</text>
+          </view>
+          <view class="student-stats">
+            <text class="student-progress">已学: {{item.totalWordsLearned || 0}} 词</text>
+            <text class="student-rate">正确率: {{item.correctRate || 0}}%</text>
+          </view>
+        </view>
+        
+        <view class="progress-section">
+          <view class="progress-title">记忆阶段分布</view>
+          <view class="progress-bars">
+            <view class="progress-item">
+              <text class="progress-label">阶段1</text>
+              <progress percent="{{item.progress.stage1 / (item.totalWordsLearned || 1) * 100}}" stroke-width="3" activeColor="#e6a23c" />
+              <text class="progress-value">{{item.progress.stage1 || 0}}</text>
+            </view>
+            <view class="progress-item">
+              <text class="progress-label">阶段2</text>
+              <progress percent="{{item.progress.stage2 / (item.totalWordsLearned || 1) * 100}}" stroke-width="3" activeColor="#e6a23c" />
+              <text class="progress-value">{{item.progress.stage2 || 0}}</text>
+            </view>
+            <view class="progress-item">
+              <text class="progress-label">阶段3</text>
+              <progress percent="{{item.progress.stage3 / (item.totalWordsLearned || 1) * 100}}" stroke-width="3" activeColor="#e6a23c" />
+              <text class="progress-value">{{item.progress.stage3 || 0}}</text>
+            </view>
+            <view class="progress-item">
+              <text class="progress-label">阶段4</text>
+              <progress percent="{{item.progress.stage4 / (item.totalWordsLearned || 1) * 100}}" stroke-width="3" activeColor="#e6a23c" />
+              <text class="progress-value">{{item.progress.stage4 || 0}}</text>
+            </view>
+            <view class="progress-item">
+              <text class="progress-label">阶段5</text>
+              <progress percent="{{item.progress.stage5 / (item.totalWordsLearned || 1) * 100}}" stroke-width="3" activeColor="#e6a23c" />
+              <text class="progress-value">{{item.progress.stage5 || 0}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!isLoading && (filteredStudents.length === 0 || noData)}}">
+    <image class="empty-icon" src="/images/empty.png" mode="aspectFit"></image>
+    <text class="empty-text">{{noData ? '暂无学生数据' : '没有符合条件的学生'}}</text>
+  </view>
+  
+  <!-- 加载中 -->
+  <view class="loading-container" wx:if="{{isLoading}}">
+    <view class="loading-spinner"></view>
+    <text class="loading-text">加载中...</text>
+  </view>
+  
+  <!-- 底部操作栏 -->
+  <view class="footer">
+    <button class="btn btn-back" bindtap="goBack">返回</button>
+  </view>
+</view> 

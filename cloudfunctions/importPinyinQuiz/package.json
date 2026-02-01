@@ -1,0 +1,14 @@
+{
+  "name": "importPinyinQuiz",
+  "version": "1.0.0",
+  "description": "从本地文件导入拼音练习题数据到pinyin_quiz表",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  }
+} 

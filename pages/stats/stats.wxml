@@ -1,0 +1,192 @@
+<!--pages/stats/stats.wxml-->
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="user-info-card">
+    <view class="user-avatar-container">
+      <image class="user-avatar" src="{{userInfo.avatarUrl || '/images/default_avatar.png'}}" mode="aspectFill"></image>
+    </view>
+    <view class="user-details">
+      <view class="user-name">{{userInfo.name || '未知用户'}}</view>
+      <view class="user-id">学号：{{userInfo.studentId || '未知学号'}}</view>
+    </view>
+  </view>
+  
+  <!-- 统计概览 -->
+  <view class="stats-summary">
+    <view class="summary-item">
+      <text class="summary-value">{{stats.learnedWords || 0}}</text>
+      <text class="summary-label">已学词语</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-value">{{stats.progressRate || 0}}%</text>
+      <text class="summary-label">完成度</text>
+    </view>
+    <view class="summary-item">
+      <text class="summary-value">{{stats.retentionRate || 0}}%</text>
+      <text class="summary-label">记忆率</text>
+    </view>
+  </view>
+  
+  <!-- 标签页导航 -->
+  <view class="tab-container">
+    <view class="tabs">
+      <view class="tab {{activeTab === 'progress' ? 'active' : ''}}" bindtap="switchTab" data-tab="progress">学习进度</view>
+      <view class="tab {{activeTab === 'distribution' ? 'active' : ''}}" bindtap="switchTab" data-tab="distribution">记忆分布</view>
+    </view>
+  
+    <!-- 标签页内容 -->
+    <view class="tab-content">
+      <!-- 学习进度标签页 -->
+      <view class="tab-pane" wx:if="{{activeTab === 'progress'}}">
+        <view class="stats-card">
+          <view class="section-title">学习进度</view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">总体进度</text>
+              <text class="progress-value">{{stats.progressRate || 0}}%</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{stats.progressRate || 0}}%"></view>
+            </view>
+          </view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">记忆保留</text>
+              <text class="progress-value">{{stats.retentionRate || 0}}%</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{stats.retentionRate || 0}}%"></view>
+            </view>
+          </view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">今日学习</text>
+              <text class="progress-value">{{stats.dailyLearnedCount || 0}}/50</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{(stats.dailyLearnedCount || 0) / 50 * 100}}%"></view>
+            </view>
+          </view>
+        </view>
+        
+        <view class="stats-card">
+          <view class="section-title">学习统计</view>
+          
+          <view class="learning-stats">
+            <view class="learning-item">
+              <text class="learning-value">{{stats.learnedWords || 0}}</text>
+              <text class="learning-label">已学词语</text>
+            </view>
+            <view class="learning-item">
+              <text class="learning-value">{{stats.notLearnedWords || 0}}</text>
+              <text class="learning-label">未学词语</text>
+            </view>
+            <view class="learning-item">
+              <text class="learning-value">{{stats.dailyLearnedCount || 0}}</text>
+              <text class="learning-label">今日学习</text>
+            </view>
+            <view class="learning-item">
+              <text class="learning-value">{{stats.sessionLearnedCount || 0}}</text>
+              <text class="learning-label">本次学习</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 记忆分布标签页 -->
+      <view class="tab-pane" wx:if="{{activeTab === 'distribution'}}">
+        <view class="stats-card">
+          <view class="section-title">记忆阶段分布</view>
+          <view class="note-text">注：显示的是您实际学习中的词语分布情况</view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">阶段1 (30分钟)</text>
+              <text class="progress-value">{{stats.stageDistribution[0] || 0}}</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{(stats.stageDistribution[0] || 0) / ((stats.learnedWords || 1) > 0 ? (stats.learnedWords || 1) : 1) * 100}}%; background-color: #e67e22;"></view>
+            </view>
+          </view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">阶段2 (1天)</text>
+              <text class="progress-value">{{stats.stageDistribution[1] || 0}}</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{(stats.stageDistribution[1] || 0) / ((stats.learnedWords || 1) > 0 ? (stats.learnedWords || 1) : 1) * 100}}%; background-color: #27ae60;"></view>
+            </view>
+          </view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">阶段3 (3天)</text>
+              <text class="progress-value">{{stats.stageDistribution[2] || 0}}</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{(stats.stageDistribution[2] || 0) / ((stats.learnedWords || 1) > 0 ? (stats.learnedWords || 1) : 1) * 100}}%; background-color: #3498db;"></view>
+            </view>
+          </view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">阶段4 (7天)</text>
+              <text class="progress-value">{{stats.stageDistribution[3] || 0}}</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill" style="width: {{(stats.stageDistribution[3] || 0) / ((stats.learnedWords || 1) > 0 ? (stats.learnedWords || 1) : 1) * 100}}%; background-color: #9b59b6;"></view>
+            </view>
+          </view>
+          
+          <view class="progress-item">
+            <view class="progress-label">
+              <text class="progress-name">阶段5 (15天)</text>
+              <text class="progress-value">{{stats.stageDistribution[4] || 0}}</text>
+            </view>
+            <view class="progress-bar">
+              <view class="progress-fill stage-5-color" style="width: {{(stats.stageDistribution[4] || 0) / ((stats.learnedWords || 1) > 0 ? (stats.learnedWords || 1) : 1) * 100}}%;"></view>
+            </view>
+          </view>
+        </view>
+        
+        <view class="stats-card">
+          <view class="section-title">记忆分布</view>
+          
+          <view class="memory-distribution">
+            <view class="memory-item">
+              <text class="memory-count">{{stats.stageDistribution[0] || 0}}</text>
+              <text class="memory-label">30分钟</text>
+            </view>
+            <view class="memory-item">
+              <text class="memory-count">{{stats.stageDistribution[1] || 0}}</text>
+              <text class="memory-label">1天</text>
+            </view>
+            <view class="memory-item">
+              <text class="memory-count">{{stats.stageDistribution[2] || 0}}</text>
+              <text class="memory-label">3天</text>
+            </view>
+            <view class="memory-item">
+              <text class="memory-count">{{stats.stageDistribution[3] || 0}}</text>
+              <text class="memory-label">7天</text>
+            </view>
+            <view class="memory-item">
+              <text class="memory-count">{{stats.stageDistribution[4] || 0}}</text>
+              <text class="memory-label">15天</text>
+            </view>
+          </view>
+        </view>
+        
+        <view class="stats-card">
+          <view class="section-title">AI驱动的学习方案</view>
+          <view class="section-content">
+            <text>基于人工智能的学习算法，系统能够智能分析学习数据，为您提供个性化的学习计划。本应用根据AI驱动的学习方案安排复习时间：30分钟、1天、3天、7天、15天、30天。每次成功复习后，词语将进入下一个记忆阶段；答错则回到第一阶段重新学习。</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

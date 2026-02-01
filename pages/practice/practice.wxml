@@ -1,0 +1,144 @@
+<!--pages/practice/practice.wxml-->
+<view class="container">
+  <!-- 练习完成页面 -->
+  <block wx:if="{{isCompleted}}">
+    <view class="completion-container">
+      <view class="completion-header">
+        <text class="completion-title">练习完成！</text>
+      </view>
+      
+      <view class="stats-container">
+        <view class="stat-item">
+          <text class="stat-value">{{stats.correct}}</text>
+          <text class="stat-label">正确</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{stats.total}}</text>
+          <text class="stat-label">总数</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{stats.percent}}%</text>
+          <text class="stat-label">正确率</text>
+        </view>
+      </view>
+      
+      <view class="completion-message">
+        <text wx:if="{{stats.percent >= 90}}">太棒了！你的掌握程度非常好！</text>
+        <text wx:elif="{{stats.percent >= 70}}">做得不错！继续保持！</text>
+        <text wx:elif="{{stats.percent >= 50}}">还不错，继续努力！</text>
+        <text wx:else>需要更多练习，加油！</text>
+      </view>
+      
+      <view class="learning-progress">
+        <text class="progress-title">学习进度</text>
+        <view class="progress-info">
+          <text>当前阶段: {{learningHistory.stage === 1 ? '学习新词' : '复习'}}</text>
+          <text>已学习词汇: {{learningHistory.completedWords.length}} 个</text>
+          <text>待复习词汇: {{learningHistory.reviewWords.length}} 个</text>
+        </view>
+      </view>
+      
+      <button class="primary-button" bindtap="goToIndex">返回首页</button>
+    </view>
+  </block>
+  
+  <!-- 练习页面 -->
+  <block wx:else>
+    <!-- 进度条 -->
+    <view class="progress-header">
+      <view class="practice-type">
+        <text wx:if="{{practiceMode === 'pinyin'}}">拼音练习 ({{completedPinyinExercises + 1}}/{{pinyinWords.length}})</text>
+        <text wx:else>选词填空 ({{completedFillBlankExercises + 1}}/{{fillBlankWords.length}})</text>
+      </view>
+      <progress percent="{{progressPercent}}" stroke-width="3" activeColor="#4CAF50" backgroundColor="#E0E0E0" />
+      <text class="progress-text">总进度: {{completedPinyinExercises + completedFillBlankExercises + 1}}/{{totalWords}}</text>
+    </view>
+    
+    <!-- 拼音练习 -->
+    <block wx:if="{{practiceMode === 'pinyin'}}">
+      <view class="word-card">
+        <text class="practice-instruction">请选择"{{currentWord.word}}"的正确拼音</text>
+        <view class="word-display">
+          <text class="word-text">{{currentWord.word}}</text>
+        </view>
+      </view>
+      
+      <!-- 选项区域 -->
+      <view class="options-container">
+        <block wx:for="{{options}}" wx:key="index">
+          <view 
+            class="option-item {{selectedOption === item ? (isCorrect ? 'correct' : 'incorrect') : ''}} {{showAnswer && item === correctPinyinAnswer ? 'correct-answer' : ''}}"
+            bindtap="selectOption"
+            data-option="{{item}}"
+            data-index="{{index}}">
+            <text>{{['A', 'B', 'C', 'D'][index]}}. {{item}}</text>
+          </view>
+        </block>
+      </view>
+      
+      <!-- 底部按钮区域 -->
+      <view class="bottom-actions">
+        <block wx:if="{{showAnswer}}">
+          <view class="feedback-message">
+            <block wx:if="{{isCorrect}}">
+              <text class="correct-text">回答正确！</text>
+            </block>
+            <block wx:else>
+              <text class="incorrect-text">回答错误！</text>
+              <text class="correct-answer-text">正确答案是：{{correctPinyinAnswer}}</text>
+            </block>
+          </view>
+          <button class="primary-button" bindtap="nextWord">
+            {{completedPinyinExercises + 1 === pinyinWords.length ? '下一阶段' : '下一个'}}
+          </button>
+        </block>
+      </view>
+    </block>
+    
+    <!-- 选词填空练习 -->
+    <block wx:else>
+      <view class="word-card">
+        <text class="practice-instruction">选择正确的词语填入空白处</text>
+        <view class="fillblank-container">
+          <text class="fillblank-text">{{currentWord.fillBlank.prefix}}</text>
+          <view class="blank-space">____</view>
+          <text class="fillblank-text">{{currentWord.fillBlank.suffix}}</text>
+        </view>
+        <view class="sentence-hint" wx:if="{{currentWord.fillBlank.sentence && currentWord.fillBlank.sentence !== currentWord.fillBlank.prefix + currentWord.fillBlank.suffix}}">
+          <text class="hint-text">提示: {{currentWord.fillBlank.sentence}}</text>
+        </view>
+      </view>
+      
+      <!-- 选项区域 -->
+      <view class="options-container">
+        <block wx:for="{{options}}" wx:key="index">
+          <view 
+            class="option-item {{selectedOption === item ? (isCorrect ? 'correct' : 'incorrect') : ''}} {{showAnswer && item === ((currentWord.fillBlank && currentWord.fillBlank.answer) ? currentWord.fillBlank.answer : currentWord.word) ? 'correct-answer' : ''}}"
+            bindtap="selectOption"
+            data-option="{{item}}"
+            data-index="{{index}}">
+            <text>{{item}}</text>
+          </view>
+        </block>
+      </view>
+      
+      <!-- 底部按钮区域 -->
+      <view class="bottom-actions">
+        <block wx:if="{{showAnswer}}">
+          <view class="feedback-message">
+            <block wx:if="{{isCorrect}}">
+              <text class="correct-text">回答正确！</text>
+            </block>
+            <block wx:else>
+              <text class="incorrect-text">回答错误！</text>
+              <text class="correct-answer-text">正确答案是：{{(currentWord.fillBlank && currentWord.fillBlank.answer) ? currentWord.fillBlank.answer : currentWord.word}}</text>
+            </block>
+          </view>
+          <button class="primary-button" bindtap="nextWord">
+            {{(completedFillBlankExercises + 1) === fillBlankWords.length ? '完成' : '下一个'}}
+          </button>
+        </block>
+      </view>
+    </block>
+  </block>
+</view>

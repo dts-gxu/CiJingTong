@@ -1,0 +1,31 @@
+<!--pages/result/result.wxml-->
+<view class="container">
+  <view class="result-header">
+    <text class="result-title">练习完成！</text>
+  </view>
+  
+  <view class="stats-container">
+    <view class="stat-item">
+      <text class="stat-value">{{stats.correct}}</text>
+      <text class="stat-label">正确</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.total}}</text>
+      <text class="stat-label">总数</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value">{{stats.percent}}%</text>
+      <text class="stat-label">正确率</text>
+    </view>
+  </view>
+  
+  <view class="feedback-container">
+    <text class="feedback-text">{{feedback}}</text>
+    <text class="next-review">下次复习时间：{{nextReviewTime}}</text>
+  </view>
+  
+  <view class="buttons-container">
+    <button class="primary-button" bindtap="goToIndex">返回首页</button>
+    <button class="secondary-button" bindtap="goToStats">查看统计</button>
+  </view>
+</view>

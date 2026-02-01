@@ -1,0 +1,1234 @@
+{
+  "pinyin_quiz": [
+    {
+      "word": "阿姨",
+      "options": {
+        "A": "ā yǐ",
+        "B": "ǎ yí",
+        "C": "ā yí",
+        "D": "à yī"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "关机",
+      "options": {
+        "A": "kuān jī",
+        "B": "guān jī",
+        "C": "guān qí",
+        "D": "guǎng jǐ"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "开机",
+      "options": {
+        "A": "kāi qí",
+        "B": "kuài jī",
+        "C": "kǎi jī",
+        "D": "kāi jī"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "接电话",
+      "options": {
+        "A": "jiè diàn huà",
+        "B": "jīn huá huà",
+        "C": "jiē diàn huà",
+        "D": "qié tián huá"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "比赛",
+      "options": {
+        "A": "pǐ sài",
+        "B": "bǐ sài",
+        "C": "bí cài",
+        "D": "bì shài"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "祝贺",
+      "options": {
+        "A": "zǔ fù",
+        "B": "zhuó hè",
+        "C": "zhù hè",
+        "D": "chū huǒ"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "考托福",
+      "options": {
+        "A": "kǎo tuō fú",
+        "B": "gǎo duó fù",
+        "C": "kào tuó fú",
+        "D": "kǎo dù fó"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "肚子",
+      "options": {
+        "A": "tú zǐ",
+        "B": "dù zǐ",
+        "C": "dǔ zi",
+        "D": "dù zi"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "拉肚子",
+      "options": {
+        "A": "là dǔ zì",
+        "B": "lā dǔ zi",
+        "C": "lā dù zi",
+        "D": "nà tù cí"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "厉害",
+      "options": {
+        "A": "lì huài",
+        "B": "nì hài",
+        "C": "lǐ hǎi",
+        "D": "lì hài"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "牛肉",
+      "options": {
+        "A": "niú ròu",
+        "B": "liú lòu",
+        "C": "níu yòu",
+        "D": "nóu rǒu"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "化验",
+      "options": {
+        "A": "huà yàn",
+        "B": "huǒ yán",
+        "C": "huà yán",
+        "D": "guǎ jiǎn"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "检查",
+      "options": {
+        "A": "jǐ chá",
+        "B": "jiǎn chá",
+        "C": "qiǎn cā",
+        "D": "jiàn shā"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "结果",
+      "options": {
+        "A": "jiē guō",
+        "B": "jié gǎo",
+        "C": "jiē guǒ",
+        "D": "qié kuò"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "肠炎",
+      "options": {
+        "A": "cháng yán",
+        "B": "chǎng yàn",
+        "C": "táng yān",
+        "D": "zhàng yǐn"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "消化",
+      "options": {
+        "A": "xiāo huá",
+        "B": "xiào huà",
+        "C": "xiāo huà",
+        "D": "qiǎo huǒ"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "打针",
+      "options": {
+        "A": "dá zhēn",
+        "B": "dǎ zhēn",
+        "C": "tǎ zēng",
+        "D": "dà zhèng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "寂寞",
+      "options": {
+        "A": "jì mò",
+        "B": "jí mǒ",
+        "C": "qì mō",
+        "D": "jī mé"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "所以",
+      "options": {
+        "A": "shuò yì",
+        "B": "suǒ yǐ",
+        "C": "suó yī",
+        "D": "sǒu yí"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "礼堂",
+      "options": {
+        "A": "lǐ táng",
+        "B": "lì tǎng",
+        "C": "nǐ dǎng",
+        "D": "lí tāng"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "舞会",
+      "options": {
+        "A": "ǔ hué",
+        "B": "mǔ kuì",
+        "C": "hù wěi",
+        "D": "wǔ huì"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "跳舞",
+      "options": {
+        "A": "qiǎo yǔ",
+        "B": "piǎo wù",
+        "C": "diào wū",
+        "D": "tiào wǔ"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "满意",
+      "options": {
+        "A": "mǎn yì",
+        "B": "nán yī",
+        "C": "màn qì",
+        "D": "mǎn yí"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "周围",
+      "options": {
+        "A": "zōu wèi",
+        "B": "zhōu wéi",
+        "C": "zhòu wēi",
+        "D": "chóu wěi"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "环境",
+      "options": {
+        "A": "huàn jīn",
+        "B": "huán jìng",
+        "C": "huáng jǐng",
+        "D": "hǎn jīng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "厨房",
+      "options": {
+        "A": "chú fáng",
+        "B": "chū fāng",
+        "C": "zhú fàng",
+        "D": "chǔ fàn"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "卧室",
+      "options": {
+        "A": "wō shí",
+        "B": "wò shì",
+        "C": "wǒ shī",
+        "D": "wèi shǐ"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "面积",
+      "options": {
+        "A": "mián jí",
+        "B": "miàn jī",
+        "C": "miǎn jì",
+        "D": "miāng jǐ"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "客厅",
+      "options": {
+        "A": "ké tíng",
+        "B": "kè tīng",
+        "C": "kě tǐng",
+        "D": "kē tìng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "阳光",
+      "options": {
+        "A": "yàng guǎn",
+        "B": "yáng guāng",
+        "C": "yǎn guàn",
+        "D": "yāng guǎng"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "妻子",
+      "options": {
+        "A": "qí zǐ",
+        "B": "pī zī",
+        "C": "qī zi",
+        "D": "qì zì"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "堵车",
+      "options": {
+        "A": "dú chè",
+        "B": "dǔ chē",
+        "C": "tǔ chě",
+        "D": "dū ché"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "房租",
+      "options": {
+        "A": "fáng zū",
+        "B": "fāng zú",
+        "C": "fáng zǔ",
+        "D": "fàn zū"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "虽然",
+      "options": {
+        "A": "suí rǎn",
+        "B": "suī rán",
+        "C": "shuī ràng",
+        "D": "suǐ rān"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "交通",
+      "options": {
+        "A": "jiáo tóng",
+        "B": "jiāo tōng",
+        "C": "qiāo tǒng",
+        "D": "jiǎo tòng"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "汽车",
+      "options": {
+        "A": "qì chē",
+        "B": "qí chè",
+        "C": "pí chě",
+        "D": "qī ché"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "车站",
+      "options": {
+        "A": "chè zhǎn",
+        "B": "chē zhàn",
+        "C": "chě zàn",
+        "D": "ché zhàn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "公共汽车",
+      "options": {
+        "A": "kōng gòng qì chē",
+        "B": "gōng gàng qì chē",
+        "C": "gǒng gōng qì chē",
+        "D": "gōng gòng qì chē"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "地铁",
+      "options": {
+        "A": "tì tiě",
+        "B": "dì tián",
+        "C": "dǐ tiě",
+        "D": "dì tiě"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "旁边",
+      "options": {
+        "A": "páng biān",
+        "B": "báng biān",
+        "C": "páng biǎn",
+        "D": "bǎng biǎn"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "附近",
+      "options": {
+        "A": "fù jìn",
+        "B": "pù jìn",
+        "C": "fù jīng",
+        "D": "pǔ jīng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "成绩",
+      "options": {
+        "A": "chéng jì",
+        "B": "zhēng jì",
+        "C": "chéng jī",
+        "D": "zhēng jī"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "句子",
+      "options": {
+        "A": "qù zǐ",
+        "B": "qù zi",
+        "C": "jù zǐ",
+        "D": "jù zi"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "糟糕",
+      "options": {
+        "A": "zāo gāo",
+        "B": "cáo gāo",
+        "C": "zāo gǎo",
+        "D": "cáo gǎo"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "回信",
+      "options": {
+        "A": "huǐ xìn",
+        "B": "huí xìng",
+        "C": "huí xìn",
+        "D": "huǐ xìng"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "故事",
+      "options": {
+        "A": "gù shi",
+        "B": "kù shi",
+        "C": "gù shì",
+        "D": "kù shì"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "会话",
+      "options": {
+        "A": "kèi huò",
+        "B": "hèi huà",
+        "C": "guì huà",
+        "D": "huì huà"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "办法",
+      "options": {
+        "A": "pàng fǎ",
+        "B": "bàn fǎ",
+        "C": "pàn fǎ",
+        "D": "bàng fǎ"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "打开",
+      "options": {
+        "A": "dǎ kāi",
+        "B": "tǎ kēi",
+        "C": "tǎ kāi",
+        "D": "dǎ kēi"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "合上",
+      "options": {
+        "A": "ké shǎng",
+        "B": "hé shàng",
+        "C": "ké shàng",
+        "D": "hé shǎng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "作业",
+      "options": {
+        "A": "zú yè",
+        "B": "zuó yè",
+        "C": "zuò yè",
+        "D": "zuǒ yè"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "生活",
+      "options": {
+        "A": "chēn huó",
+        "B": "shēn huó",
+        "C": "shēng huó",
+        "D": "chēng huó"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "习惯",
+      "options": {
+        "A": "qí guǎn",
+        "B": "xí guàn",
+        "C": "qí guàn",
+        "D": "xí guǎn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "干燥",
+      "options": {
+        "A": "kān zhào",
+        "B": "gān zhào",
+        "C": "kān zào",
+        "D": "gān zào"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "干净",
+      "options": {
+        "A": "kān jìn",
+        "B": "gān jìng",
+        "C": "kān jìng",
+        "D": "gān jìn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "油腻",
+      "options": {
+        "A": "yōu lì",
+        "B": "yóu lì",
+        "C": "yōu nì",
+        "D": "yóu nì"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "牛奶",
+      "options": {
+        "A": "liú lǎi",
+        "B": "niú nǎi",
+        "C": "liú nǎi",
+        "D": "niú lǎi"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "游泳",
+      "options": {
+        "A": "róu yòng",
+        "B": "yóu yòng",
+        "C": "róu yǒng",
+        "D": "yóu yǒng"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "散步",
+      "options": {
+        "A": "sàn pù",
+        "B": "shàn pù",
+        "C": "sàn bù",
+        "D": "shàn bù"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "气功",
+      "options": {
+        "A": "xì gòng",
+        "B": "qì gōng",
+        "C": "xì gōng",
+        "D": "qì gòng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "功课",
+      "options": {
+        "A": "hōng kē",
+        "B": "gōng kē",
+        "C": "hōng kè",
+        "D": "gōng kè"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "记住",
+      "options": {
+        "A": "qì zù",
+        "B": "jì zù",
+        "C": "qì zhù",
+        "D": "jì zhù"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "一般",
+      "options": {
+        "A": "yī pǎn",
+        "B": "yī bān",
+        "C": "yī pān",
+        "D": "yī bǎn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "父母",
+      "options": {
+        "A": "fù mǔ",
+        "B": "pú mǔ",
+        "C": "fú mǔ",
+        "D": "pù mǔ"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "原来",
+      "options": {
+        "A": "yuàn nái",
+        "B": "yuàn lái",
+        "C": "yuán lái",
+        "D": "yuán nái"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "延长",
+      "options": {
+        "A": "yàn zhǎng",
+        "B": "yán cháng",
+        "C": "yàn cháng",
+        "D": "yán zhǎng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "钟头",
+      "options": {
+        "A": "chōng tǒu",
+        "B": "zhōng tǒu",
+        "C": "chōng tóu",
+        "D": "zhōng tóu"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "效果",
+      "options": {
+        "A": "xiào guǒ",
+        "B": "xiào guó",
+        "C": "sìào guǒ",
+        "D": "sìào guó"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "好处",
+      "options": {
+        "A": "háo cù",
+        "B": "hǎo cù",
+        "C": "hǎo chù",
+        "D": "háo chù"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "坏处",
+      "options": {
+        "A": "huāi cù",
+        "B": "huài chù",
+        "C": "huāi chù",
+        "D": "huài cù"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "血压",
+      "options": {
+        "A": "xiě yá",
+        "B": "xuè yá",
+        "C": "xuè yā",
+        "D": "xiě yā"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "高血压",
+      "options": {
+        "A": "kāo xiě yā",
+        "B": "gāo xiě yā",
+        "C": "kāo xuè yā",
+        "D": "gāo xuè yā"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "慢性",
+      "options": {
+        "A": "nàn xìn",
+        "B": "màn xìn",
+        "C": "màn xìng",
+        "D": "nàn xìng"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "失眠",
+      "options": {
+        "A": "sī miǎn",
+        "B": "shī mián",
+        "C": "sī mián",
+        "D": "shī miǎn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "必须",
+      "options": {
+        "A": "bì xǔ",
+        "B": "bì xǔ",
+        "C": "pì xū",
+        "D": "pì xū"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "变化",
+      "options": {
+        "A": "biàn huà",
+        "B": "biān huà",
+        "C": "pián yi",
+        "D": "piàn huà"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "暑假",
+      "options": {
+        "A": "shǔ jià",
+        "B": "shù jiā",
+        "C": "sū jià",
+        "D": "shū jiǎo"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "城市",
+      "options": {
+        "A": "chén shì",
+        "B": "chéng shì",
+        "C": "chēng shí",
+        "D": "chèn shī"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "增加",
+      "options": {
+        "A": "zēng jiā",
+        "B": "zén jiá",
+        "C": "zhèng jià",
+        "D": "zèng jiǎ"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "建筑",
+      "options": {
+        "A": "jiàn zhù",
+        "B": "jiān zhú",
+        "C": "qián zhǔ",
+        "D": "jiǎn zhu"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "漂亮",
+      "options": {
+        "A": "biāo liàn",
+        "B": "piāo liáng",
+        "C": "piào liang",
+        "D": "piáo liàng"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "冬天",
+      "options": {
+        "A": "dǒng tiàn",
+        "B": "dòng tián",
+        "C": "tóng tiān",
+        "D": "dōng tiān"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "暖和",
+      "options": {
+        "A": "nuàn hu",
+        "B": "nuǎn huo",
+        "C": "nán huò",
+        "D": "luǎn hé"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "暖气",
+      "options": {
+        "A": "nǎn qī",
+        "B": "nuàn qǐ",
+        "C": "nuǎn qì",
+        "D": "luǎn qí"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "气温",
+      "options": {
+        "A": "qī wén",
+        "B": "qì wēn",
+        "C": "qǐ wèn",
+        "D": "xí wèn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "温度",
+      "options": {
+        "A": "wén dú",
+        "B": "wèn dǔ",
+        "C": "wèng dū",
+        "D": "wēn dù"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "家庭",
+      "options": {
+        "A": "jiá tǐng",
+        "B": "jià tīng",
+        "C": "jiā tíng",
+        "D": "qià tìn"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "下载",
+      "options": {
+        "A": "xiá zài",
+        "B": "xià zǎi",
+        "C": "xiā zǎi",
+        "D": "xià zài"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "也许",
+      "options": {
+        "A": "yé xū",
+        "B": "yè xù",
+        "C": "yě xū",
+        "D": "yě xǔ"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "古典",
+      "options": {
+        "A": "gū diàn",
+        "B": "gú diǎn",
+        "C": "gǔ diǎn",
+        "D": "kǔ dián"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "世界",
+      "options": {
+        "A": "shí jié",
+        "B": "shǐ jiè",
+        "C": "shì jiè",
+        "D": "sī jiē"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "民歌",
+      "options": {
+        "A": "míng gé",
+        "B": "mín gē",
+        "C": "mǐn gè",
+        "D": "mìn gě"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "歌曲",
+      "options": {
+        "A": "gé qū",
+        "B": "gě qǔ",
+        "C": "gē qǔ",
+        "D": "gè qù"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "歌词",
+      "options": {
+        "A": "gé cī",
+        "B": "gě cí",
+        "C": "gè cǐ",
+        "D": "gē cí"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "遥远",
+      "options": {
+        "A": "yāo yuán",
+        "B": "yào yuǎn",
+        "C": "yǎo yuàn",
+        "D": "yáo yuǎn"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "季节",
+      "options": {
+        "A": "jī jié",
+        "B": "jí jiē",
+        "C": "jì jiè",
+        "D": "jì jié"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "春天",
+      "options": {
+        "A": "chūn tiān",
+        "B": "chún tián",
+        "C": "chǔn tiàn",
+        "D": "chòng tiāng"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "夏天",
+      "options": {
+        "A": "xiá tián",
+        "B": "xià tiān",
+        "C": "xiāng tiàn",
+        "D": "xiǎn tiē"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "秋天",
+      "options": {
+        "A": "qiú tián",
+        "B": "qiū tiān",
+        "C": "qiào tiēn",
+        "D": "qiǔ tiàn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "刮风",
+      "options": {
+        "A": "guǎ fèn",
+        "B": "guà fēng",
+        "C": "guā fēng",
+        "D": "guó fòng"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "下雪",
+      "options": {
+        "A": "xiā xué",
+        "B": "xiè xuě",
+        "C": "xià xuě",
+        "D": "xiáo xué"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "而且",
+      "options": {
+        "A": "ěr qié",
+        "B": "ér qiě",
+        "C": "èr qiè",
+        "D": "ān qiē"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "周末",
+      "options": {
+        "A": "zhòu mō",
+        "B": "zǒu mè",
+        "C": "zhōu mò",
+        "D": "zháo má"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "历史",
+      "options": {
+        "A": "lí shí",
+        "B": "lì shǐ",
+        "C": "lǐ shī",
+        "D": "luó shì"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "产生",
+      "options": {
+        "A": "chān shēng",
+        "B": "chǎng shèn",
+        "C": "chǎn shēng",
+        "D": "chuán shéng"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "画册",
+      "options": {
+        "A": "huá cè",
+        "B": "huà cè",
+        "C": "huǒ cé",
+        "D": "huài cāi"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "研究",
+      "options": {
+        "A": "yān jiù",
+        "B": "yán jiū",
+        "C": "yǎng jié",
+        "D": "yìn jiào"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "改革",
+      "options": {
+        "A": "gài gē",
+        "B": "gǎi gé",
+        "C": "guó gè",
+        "D": "gāi guǒ"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "开放",
+      "options": {
+        "A": "kǎi fèn",
+        "B": "kāi fàng",
+        "C": "kuài fēn",
+        "D": "kàn fāng"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "一切",
+      "options": {
+        "A": "yí qiē",
+        "B": "yì qiè",
+        "C": "yī qiè",
+        "D": "yǐ qié"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "滑冰",
+      "options": {
+        "A": "huá bìn",
+        "B": "huà bīng",
+        "C": "huá bīng",
+        "D": "huá biē"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "滑雪",
+      "options": {
+        "A": "huá xiě",
+        "B": "huá xué",
+        "C": "huà xuě",
+        "D": "huá xuě"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "家乡",
+      "options": {
+        "A": "jiā xiāng",
+        "B": "jiá xián",
+        "C": "jiǎ xiàng",
+        "D": "jià xiān"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "风景",
+      "options": {
+        "A": "fén jǐng",
+        "B": "fēng jǐng",
+        "C": "fèng jīng",
+        "D": "fēng jìn"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "尤其",
+      "options": {
+        "A": "yòu qī",
+        "B": "yóu qí",
+        "C": "yǒu qǐ",
+        "D": "yōu qì"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "凉快",
+      "options": {
+        "A": "liáng kuai",
+        "B": "liàng kuài",
+        "C": "liǎn kuǎi",
+        "D": "liān kuāi"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "避暑",
+      "options": {
+        "A": "bǐ shū",
+        "B": "bì shǔ",
+        "C": "bí shù",
+        "D": "bì shòu"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "经营",
+      "options": {
+        "A": "jìn yīng",
+        "B": "jīng yìng",
+        "C": "jīng yíng",
+        "D": "jǐng yīn"
+      },
+      "answer": "C"
+    },
+    {
+      "word": "发财",
+      "options": {
+        "A": "fá cái",
+        "B": "fā cǎi",
+        "C": "fà cāi",
+        "D": "fā cái"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "树叶",
+      "options": {
+        "A": "shú yè",
+        "B": "shù yè",
+        "C": "shǔ yě",
+        "D": "shū yē"
+      },
+      "answer": "B"
+    },
+    {
+      "word": "着急",
+      "options": {
+        "A": "zhāo jí",
+        "B": "zháo jì",
+        "C": "zhǎo jī",
+        "D": "zhào jǐ"
+      },
+      "answer": "A"
+    },
+    {
+      "word": "电池",
+      "options": {
+        "A": "diǎn chí",
+        "B": "diàn chī",
+        "C": "duān chì",
+        "D": "diàn chí"
+      },
+      "answer": "D"
+    },
+    {
+      "word": "迟到",
+      "options": {
+        "A": "chí dào",
+        "B": "zhī dáo",
+        "C": "chǐ dǎo",
+        "D": "chì dāo"
+      },
+      "answer": "A"
+    }
+  ]
+}

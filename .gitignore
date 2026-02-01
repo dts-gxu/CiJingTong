@@ -1,0 +1,37 @@
+# 微信小程序
+node_modules/
+miniprogram_npm/
+.cloudfunctionsRoot
+cloudfunctions/*/node_modules/
+cloudfunctions/*/package-lock.json
+
+# 临时文件
+*.log
+temp.txt
+temp_learn/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# 私有配置
+project.private.config.json
+
+# 大文件
+*.exe
+miniconda.exe
+
+# 上传目录
+uploads/
+
+# 环境变量
+.env
+.env.local

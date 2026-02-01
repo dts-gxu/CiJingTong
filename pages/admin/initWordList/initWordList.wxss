@@ -1,0 +1,104 @@
+/* pages/admin/initWordList/initWordList.wxss */
+.container {
+  padding: 30rpx;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  margin-bottom: 40rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.content {
+  flex: 1;
+}
+
+.section {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.1);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.description {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.checkbox-item text {
+  margin-left: 10rpx;
+  font-size: 28rpx;
+}
+
+.primary-button {
+  background-color: #4CAF50;
+  color: white;
+  font-size: 30rpx;
+  margin-top: 20rpx;
+}
+
+.primary-button[disabled] {
+  background-color: #cccccc;
+  color: #999999;
+}
+
+.secondary-button {
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.result-section {
+  background-color: #f9f9f9;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.result-content {
+  font-size: 28rpx;
+  padding: 20rpx;
+  border-radius: 8rpx;
+}
+
+.result-content text {
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.error {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.footer {
+  margin-top: 40rpx;
+} 

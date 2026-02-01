@@ -1,0 +1,410 @@
+<view class="container">
+  <!-- 页面头部 -->
+  <view class="page-header">
+    <view class="header-content">
+      <view class="title-section">
+        <view class="main-title">词语管理</view>
+        <view class="subtitle">共 {{words.length}} 个词语</view>
+      </view>
+      <view class="stats-card">
+        <view class="stats-item">
+          <view class="stats-number">{{words.length}}</view>
+          <view class="stats-label">总词语</view>
+        </view>
+        <view class="stats-item">
+          <view class="stats-number">{{selectedCount}}</view>
+          <view class="stats-label">已选择</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索和操作区域 -->
+  <view class="operation-section">
+    <!-- 搜索栏 -->
+    <view class="search-container">
+      <view class="search-wrapper">
+    <view class="search-box">
+          <icon class="search-icon" type="search" size="16" color="#999"></icon>
+          <input class="search-input" type="text" placeholder="搜索词语..." bindinput="onSearchInput" value="{{searchKeyword}}" confirm-type="search" bindconfirm="searchWord"/>
+          <view class="search-actions" wx:if="{{searchKeyword}}">
+            <view class="search-clear-btn" bindtap="clearSearch">
+              <icon type="clear" size="16" color="#999"></icon>
+            </view>
+          </view>
+        </view>
+        <view class="search-btn" bindtap="searchWord">
+          <icon type="search" size="18" color="white"></icon>
+          <text>搜索</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作按钮组 -->
+    <view class="action-toolbar">
+      <view class="action-group">
+        <view class="action-item" bindtap="showDeleteConfirm">
+          <icon type="cancel" size="20" color="#e74c3c"></icon>
+          <text class="action-text">批量删除</text>
+        </view>
+                 <view class="action-item" bindtap="showCleanupConfirm">
+           <icon type="clear" size="20" color="#f39c12"></icon>
+           <text class="action-text">清理数据</text>
+         </view>
+         <view class="action-item" bindtap="createCollection">
+           <icon type="success" size="20" color="#27ae60"></icon>
+           <text class="action-text">创建集合</text>
+         </view>        
+      </view>
+    </view>
+  </view>
+
+  <!-- 词语列表 -->
+  <view class="word-list-container">
+    <!-- 列表头部 -->
+    <view class="list-header">
+      <view class="header-item select-item">
+        <checkbox class="custom-checkbox" checked="{{selectAll}}" bindtap="toggleSelectAll"></checkbox>
+        <text class="header-text">全选</text>
+      </view>
+      <view class="header-item word-item-header">
+        <text class="header-text">词语信息</text>
+      </view>
+      <view class="header-item action-item-header">
+        <text class="header-text">操作</text>
+      </view>
+    </view>
+
+    <!-- 词语列表 -->
+    <view class="word-list" wx:if="{{filteredWords.length > 0}}">
+      <view class="word-card" wx:for="{{filteredWords}}" wx:key="_id">
+        <view class="card-select">
+          <checkbox class="custom-checkbox" checked="{{item.selected}}" data-index="{{index}}" bindtap="toggleSelect"></checkbox>
+        </view>
+        
+        <view class="card-content">
+          <view class="word-info">
+            <view class="word-main">
+              <text class="word-text">{{item.word}}</text>
+              <text class="word-pinyin" wx:if="{{item.pinyin}}">{{item.pinyin}}</text>
+            </view>
+            <view class="word-details">
+              <text class="word-translation" wx:if="{{item.translation}}">英: {{item.translation}}</text>
+              <text class="word-turkmen" wx:if="{{item.turkmenTranslation}}">土: {{item.turkmenTranslation}}</text>
+            </view>
+          </view>
+        </view>
+        
+        <view class="card-actions">
+          <view class="action-btn edit-btn" bindtap="editWord" data-word-id="{{item._id}}">
+            <icon type="compose" size="16" color="#3498db"></icon>
+            <text>编辑</text>
+          </view>
+          <view class="action-btn delete-btn" bindtap="showDeleteWordConfirm" data-word-id="{{item._id}}" data-word="{{item.word}}">
+            <icon type="cancel" size="16" color="#e74c3c"></icon>
+            <text>删除</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <view class="empty-icon">📝</view>
+      <view class="empty-title">暂无词语数据</view>
+      <view class="empty-desc">{{searchKeyword ? '没有找到相关词语' : '还没有添加任何词语'}}</view>
+    </view>
+  </view>
+
+  <!-- 分页控制 -->
+  <view class="pagination-container">
+  <view class="pagination">
+      <view class="page-nav">
+        <view class="nav-btn {{currentPage <= 1 ? 'disabled' : ''}}" bindtap="prevPage">
+          <icon type="back" size="16" color="{{currentPage <= 1 ? '#ccc' : '#666'}}"></icon>
+          <text>上一页</text>
+        </view>
+        
+        <view class="page-indicator">
+          <text class="page-current">{{currentPage}}</text>
+          <text class="page-divider">/</text>
+          <text class="page-total">{{totalPages}}</text>
+        </view>
+        
+        <view class="nav-btn {{currentPage >= totalPages ? 'disabled' : ''}}" bindtap="nextPage">
+          <text>下一页</text>
+          <icon type="next" size="16" color="{{currentPage >= totalPages ? '#ccc' : '#666'}}"></icon>
+        </view>
+      </view>
+      
+      <view class="page-stats">
+        <text>每页 {{pageSize}} 条，共 {{words.length}} 条记录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 词语编辑弹窗 -->
+  <view class="modal" wx:if="{{showEditModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">编辑词语</text>
+        <text class="modal-close" bindtap="closeEditModal">×</text>
+      </view>
+      
+      <scroll-view scroll-y class="modal-scroll">
+        <!-- 基本信息 -->
+        <view class="form-section">
+          <view class="section-title">基本信息</view>
+          <view class="form-group">
+            <text class="form-label">词语</text>
+            <input class="form-input" type="text" value="{{editingWord.word}}" bindinput="onWordChange"/>
+          </view>
+          
+          <view class="form-group">
+            <text class="form-label">拼音</text>
+            <input class="form-input" type="text" value="{{editingWord.pinyin}}" bindinput="onPinyinChange"/>
+          </view>
+          
+          <view class="form-group">
+            <text class="form-label">英语翻译</text>
+            <textarea class="form-textarea" value="{{editingWord.translation}}" bindinput="onTranslationChange"></textarea>
+          </view>
+          
+          <view class="form-group">
+            <text class="form-label">土库曼语翻译</text>
+            <textarea class="form-textarea" value="{{editingWord.turkmenTranslation}}" bindinput="onTurkmenTranslationChange"></textarea>
+          </view>
+        </view>
+        
+        <!-- 例句编辑 -->
+        <view class="form-section">
+          <view class="section-title">例句</view>
+          <view class="form-group">
+            <text class="form-label">例句</text>
+            <textarea class="form-textarea" value="{{editingWord.example.chinese}}" bindinput="onExampleChineseChange" placeholder="输入例句"></textarea>
+          </view>
+        </view>
+        
+        <!-- 拼音练习编辑 -->
+        <view class="form-section">
+          <view class="section-title">拼音练习</view>
+          <view class="quiz-options">
+            <view class="quiz-option">
+              <text class="option-label">A:</text>
+              <input class="form-input" type="text" value="{{editingWord.pinyinQuiz.options.options[0].value}}" 
+                    data-index="0" bindinput="onPinyinOptionChange"/>
+            </view>
+            <view class="quiz-option">
+              <text class="option-label">B:</text>
+              <input class="form-input" type="text" value="{{editingWord.pinyinQuiz.options.options[1].value}}" 
+                    data-index="1" bindinput="onPinyinOptionChange"/>
+            </view>
+            <view class="quiz-option">
+              <text class="option-label">C:</text>
+              <input class="form-input" type="text" value="{{editingWord.pinyinQuiz.options.options[2].value}}" 
+                    data-index="2" bindinput="onPinyinOptionChange"/>
+            </view>
+            <view class="quiz-option">
+              <text class="option-label">D:</text>
+              <input class="form-input" type="text" value="{{editingWord.pinyinQuiz.options.options[3].value}}" 
+                    data-index="3" bindinput="onPinyinOptionChange"/>
+            </view>
+            <view class="quiz-option">
+              <text class="option-label">正确答案:</text>
+              <picker class="form-picker" range="{{['A', 'B', 'C', 'D']}}" value="{{correctAnswerIndex}}" bindchange="onCorrectAnswerChange">
+                <view class="picker-value">{{['A', 'B', 'C', 'D'][correctAnswerIndex] || '请选择'}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 填空练习编辑 -->
+        <view class="form-section">
+          <view class="section-title">填空练习</view>
+          <view class="form-group">
+            <text class="form-label">完整句子</text>
+            <textarea class="form-textarea" value="{{editingWord.fillBlank.sentence}}" bindinput="onSentenceChange" placeholder="输入填空练习句子，使用（）表示填空位置"></textarea>
+          </view>
+          
+          <view class="form-group">
+            <text class="form-label">前缀</text>
+            <input class="form-input" type="text" value="{{editingWord.fillBlank.prefix}}" bindinput="onPrefixChange"/>
+          </view>
+          
+          <view class="form-group">
+            <text class="form-label">后缀</text>
+            <input class="form-input" type="text" value="{{editingWord.fillBlank.suffix}}" bindinput="onSuffixChange"/>
+          </view>
+          
+          <view class="form-group">
+            <text class="form-label">答案</text>
+            <input class="form-input" type="text" value="{{editingWord.fillBlank.answer}}" bindinput="onFillBlankAnswerChange"/>
+          </view>
+        </view>
+        
+        <!-- 图片管理 -->
+        <view class="form-section">
+          <view class="section-title">词语图片</view>
+          <view class="image-section">
+            <view class="current-image" wx:if="{{editingWord.imageUrl}}">
+              <text class="form-label">当前图片</text>
+              <view class="image-container">
+                <image class="word-image" src="{{editingWord.imageUrl}}" mode="aspectFit"></image>
+                <view class="image-actions">
+                  <button class="btn-danger btn-small" bindtap="deleteImage">删除图片</button>
+                  <button class="btn-primary btn-small" bindtap="showImageUpload">更换图片</button>
+                </view>
+              </view>
+            </view>
+            
+            <view class="no-image" wx:else>
+              <text class="form-label">暂无图片</text>
+              <button class="btn-primary" bindtap="showImageUpload">上传图片</button>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 预览 -->
+        <view class="form-section">
+          <view class="section-title">预览</view>
+          <view class="preview-container">
+            <view class="preview-item">
+              <text class="preview-label">拼音题:</text>
+              <view class="preview-content">
+                <view>词语: {{editingWord.word}}</view>
+                <view>A. {{editingWord.pinyinQuiz.options.options[0].value}}</view>
+                <view>B. {{editingWord.pinyinQuiz.options.options[1].value}}</view>
+                <view>C. {{editingWord.pinyinQuiz.options.options[2].value}}</view>
+                <view>D. {{editingWord.pinyinQuiz.options.options[3].value}}</view>
+                <view>正确答案: {{editingWord.pinyinQuiz.options.correctOption}}</view>
+              </view>
+            </view>
+            
+            <view class="preview-item">
+              <text class="preview-label">填空题:</text>
+              <view class="preview-content">
+                <view>{{editingWord.fillBlank.prefix}}（{{editingWord.fillBlank.answer}}）{{editingWord.fillBlank.suffix}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </scroll-view>
+      
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="closeEditModal">取消</button>
+        <button class="btn-save" bindtap="saveEditedWord">保存</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 图片上传弹窗 -->
+  <view class="modal" wx:if="{{showImageUpload}}">
+    <view class="modal-content image-upload-modal">
+      <view class="modal-header">
+        <text class="modal-title">上传图片</text>
+        <text class="modal-close" bindtap="hideImageUpload">×</text>
+      </view>
+      
+      <view class="modal-body">
+        <view class="upload-info">
+          <text>请选择词语"{{editingWord.word}}"的图片</text>
+        </view>
+        <view class="upload-actions">
+          <button class="btn-primary upload-btn" bindtap="chooseImage">选择图片</button>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="hideImageUpload">取消</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 删除确认弹窗 -->
+  <view class="modal" wx:if="{{showDeleteModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">删除确认</text>
+        <text class="modal-close" bindtap="closeDeleteModal">×</text>
+      </view>
+      
+      <view class="modal-body">
+        <view class="confirm-message">
+          <text>确定要删除"{{wordToDelete}}"吗？此操作不可恢复。</text>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="closeDeleteModal">取消</button>
+        <button class="btn-danger" bindtap="confirmDelete">删除</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 批量删除确认弹窗 -->
+  <view class="modal" wx:if="{{showBatchDeleteModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">批量删除确认</text>
+        <text class="modal-close" bindtap="closeBatchDeleteModal">×</text>
+      </view>
+      
+      <view class="modal-body">
+        <view class="confirm-message">
+          <text>确定要删除选中的{{selectedCount}}个词语吗？此操作不可恢复。</text>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="closeBatchDeleteModal">取消</button>
+        <button class="btn-danger" bindtap="confirmBatchDelete">删除</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 清理确认弹窗 -->
+  <view class="modal" wx:if="{{showCleanupModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text class="modal-title">清理旧数据确认</text>
+        <text class="modal-close" bindtap="closeCleanupModal">×</text>
+      </view>
+      
+      <view class="modal-body">
+        <view class="confirm-message">
+          <text>确定要清理旧版词语数据吗？此操作将删除旧的words集合中的数据，不会影响当前words_data集合。此操作不可恢复。</text>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="closeCleanupModal">取消</button>
+        <button class="btn-warning" bindtap="confirmCleanup">确认清理</button>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 图片上传弹窗 -->
+  <view class="modal" wx:if="{{showImageUpload}}">
+    <view class="modal-content image-upload-modal">
+      <view class="modal-header">
+        <text class="modal-title">上传图片</text>
+        <text class="modal-close" bindtap="hideImageUpload">×</text>
+      </view>
+      
+      <view class="modal-body">
+        <view class="upload-info">
+          <text>为词语"{{editingWord.word}}"上传图片</text>
+        </view>
+        <view class="upload-actions">
+          <button class="upload-btn" bindtap="chooseImage">选择图片</button>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 加载指示器 -->
+  <view class="loading" wx:if="{{isLoading}}">
+    <view class="loading-spinner"></view>
+    <text>加载中...</text>
+  </view>
+</view> 

@@ -1,0 +1,9 @@
+{
+  "name": "saveUserData",
+  "version": "1.0.0",
+  "description": "保存用户数据的云函数",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+} 

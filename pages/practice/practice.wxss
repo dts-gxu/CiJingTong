@@ -1,0 +1,301 @@
+/* pages/practice/practice.wxss */
+
+.container {
+  padding: 30rpx;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 进度条样式 */
+.progress-header {
+  margin-bottom: 40rpx;
+  width: 100%;
+}
+
+.progress-text {
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+  text-align: right;
+}
+
+/* 词语卡片样式 */
+.word-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  padding: 40rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.word-text {
+  font-size: 64rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.practice-instruction {
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 20rpx;
+  text-align: center;
+}
+
+.sentence-text {
+  font-size: 36rpx;
+  line-height: 1.5;
+  text-align: center;
+  margin: 20rpx 0;
+  color: #333;
+}
+
+.audio-button {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 50%;
+}
+
+.audio-icon {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+/* 选项区域样式 */
+.options-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20rpx;
+}
+
+.option-item {
+  background-color: #f5f5f5;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.option-item:active {
+  background-color: #e0e0e0;
+}
+
+.option-item.correct {
+  background-color: #e6f7e9;
+  border: 2rpx solid #4CAF50;
+}
+
+.option-item.incorrect {
+  background-color: #fde7e9;
+  border: 2rpx solid #F44336;
+}
+
+.option-item.correct-answer {
+  background-color: #e6f7e9;
+  border: 2rpx solid #4CAF50;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+/* 底部按钮区域样式 */
+.bottom-actions {
+  margin-top: auto;
+  padding-top: 40rpx;
+  width: 100%;
+}
+
+.feedback-message {
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+
+.correct-text {
+  color: #4CAF50;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.incorrect-text {
+  color: #F44336;
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.correct-answer-text {
+  display: block;
+  color: #4CAF50;
+  font-size: 32rpx;
+  margin-top: 10rpx;
+}
+
+.primary-button {
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 12rpx;
+  font-size: 32rpx;
+  width: 100%;
+}
+
+/* 跳过按钮样式 */
+.skip-button {
+  background-color: #f0f0f0;
+  color: #666;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  width: 100%;
+  margin-top: 20rpx;
+  border: 1px solid #ddd;
+}
+
+/* 完成页面样式 */
+.completion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx;
+  height: 100%;
+}
+
+.completion-header {
+  margin-bottom: 60rpx;
+}
+
+.completion-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #4CAF50;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 60rpx;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-value {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.stat-label {
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 10rpx;
+}
+
+.completion-message {
+  font-size: 36rpx;
+  color: #333;
+  text-align: center;
+  margin-bottom: 60rpx;
+  line-height: 1.5;
+}
+
+/* 填空练习的相关样式 */
+.fillblank-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 20rpx 0;
+  flex-wrap: wrap;
+}
+
+.fillblank-text {
+  font-size: 32rpx;
+  color: #333;
+  line-height: 1.6;
+}
+
+.blank-space {
+  display: inline-block;
+  min-width: 120rpx;
+  height: 40rpx;
+  border-bottom: 2px solid #4CAF50;
+  margin: 0 10rpx;
+  text-align: center;
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+/* 练习类型显示的样式 */
+.practice-type {
+  margin-bottom: 10rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.learning-progress {
+  margin-top: 30rpx;
+  padding: 20rpx;
+  background-color: #f8f8f8;
+  border-radius: 10rpx;
+  width: 80%;
+}
+
+.progress-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15rpx;
+  display: block;
+}
+
+.progress-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.progress-info text {
+  font-size: 28rpx;
+  color: #555;
+}
+
+.sentence-hint {
+  margin-top: 20rpx;
+  padding: 10rpx;
+  background-color: #f8f8f8;
+  border-radius: 8rpx;
+  border-left: 4rpx solid #4CAF50;
+}
+
+.hint-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.4;
+} 

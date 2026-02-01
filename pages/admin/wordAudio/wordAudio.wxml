@@ -1,0 +1,178 @@
+<!--pages/admin/wordAudio/wordAudio.wxml-->
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">词汇录音管理</text>
+    <view class="page-desc">管理和上传词汇的音频文件</view>
+  </view>
+  
+  <!-- 批量上传和批量删除按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn upload-btn" bindtap="uploadAudioFiles">
+      <text class="btn-icon">📤</text>
+      <text>批量上传录音</text>
+    </button>
+    
+    <button class="action-btn delete-btn {{isSelectionMode ? 'active' : ''}}" bindtap="toggleSelectionMode">
+      <text class="btn-icon">{{isSelectionMode ? '✓' : '🗑️'}}</text>
+      <text>{{isSelectionMode ? '完成' : '批量删除'}}</text>
+    </button>
+  </view>
+  
+  <view class="upload-tip">支持.mp4或.aac格式，文件名需与词汇名称一致</view>
+  <view class="upload-status" wx:if="{{uploadStatus}}">{{uploadStatus}}</view>
+  
+  <!-- 批量删除控制区 -->
+  <view class="batch-delete-controls" wx:if="{{isSelectionMode}}">
+    <view class="selection-info">已选择: {{selectedItems.length}} 个</view>
+    <view class="selection-actions">
+      <button class="selection-btn select-all" bindtap="selectAll">全选</button>
+      <button class="selection-btn select-none" bindtap="selectNone">取消全选</button>
+      <button class="selection-btn select-has" bindtap="selectHasAudio">选择有录音</button>
+      <button class="selection-btn delete" bindtap="deleteSelected" disabled="{{selectedItems.length === 0}}">删除选中</button>
+    </view>
+  </view>
+  
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <input 
+        type="text" 
+        placeholder="搜索词汇" 
+        value="{{searchText}}"
+        bindinput="onSearchInput"
+        class="search-input"
+      />
+      <view class="search-icon">🔍</view>
+    </view>
+  </view>
+  
+  <!-- 过滤器 -->
+  <view class="filter-bar">
+    <view class="filter-title">录音状态:</view>
+    <view 
+      class="filter-item {{hasAudioFilter === 'all' ? 'active' : ''}}" 
+      bindtap="changeAudioFilter" 
+      data-type="all"
+    >全部</view>
+    <view 
+      class="filter-item {{hasAudioFilter === 'has' ? 'active' : ''}}" 
+      bindtap="changeAudioFilter" 
+      data-type="has"
+    >有录音</view>
+    <view 
+      class="filter-item {{hasAudioFilter === 'none' ? 'active' : ''}}" 
+      bindtap="changeAudioFilter" 
+      data-type="none"
+    >无录音</view>
+  </view>
+  
+  <!-- 上传进度 -->
+  <view class="upload-progress" wx:if="{{isUploading}}">
+    <view class="progress-info">
+      <text>上传进度: {{uploadedCount}}/{{totalUploadCount}}</text>
+      <text>{{uploadProgress}}%</text>
+    </view>
+    <progress percent="{{uploadProgress}}" stroke-width="4" color="#4CAF50" active show-info="{{false}}"></progress>
+  </view>
+  
+  <!-- 删除进度 -->
+  <view class="delete-progress" wx:if="{{isDeleting}}">
+    <view class="progress-info">
+      <text>删除进度: {{deletedCount}}/{{totalDeleteCount}}</text>
+      <text>{{deleteProgress}}%</text>
+    </view>
+    <progress percent="{{deleteProgress}}" stroke-width="4" color="#f44336" active show-info="{{false}}"></progress>
+  </view>
+  
+  <!-- 统计信息 -->
+  <view class="stats-bar">
+    <text>总计: {{totalWords}} 个词汇</text>
+    <text>第 {{currentPage}}/{{totalPages}} 页</text>
+  </view>
+  
+  <!-- 词汇列表 -->
+  <view class="word-list">
+    <block wx:if="{{loading}}">
+      <view class="loading-container">
+        <view class="loading"></view>
+        <text>加载中...</text>
+      </view>
+    </block>
+    
+    <block wx:elif="{{filteredWords.length === 0}}">
+      <view class="empty-state">
+        <image class="empty-icon" src="/images/empty.png" mode="aspectFit"></image>
+        <text>没有找到匹配的词汇</text>
+      </view>
+    </block>
+    
+    <block wx:else>
+      <view class="word-item-header">
+        <view class="checkbox-col" wx:if="{{isSelectionMode}}"></view>
+        <text class="word-col">词汇</text>
+        <text class="pinyin-col">拼音</text>
+        <text class="status-col">录音状态</text>
+        <text class="action-col">操作</text>
+      </view>
+      
+      <view class="word-items">
+        <view 
+          class="word-item {{isItemSelected(item.id || item._id) ? 'selected' : ''}}" 
+          wx:for="{{filteredWords}}" 
+          wx:key="id"
+          data-word-id="{{item.id || item._id}}"
+          data-word="{{item.word}}"
+          bindtap="{{isSelectionMode ? 'toggleItemSelection' : ''}}"
+        >
+          <view class="checkbox-col" wx:if="{{isSelectionMode}}">
+            <view class="checkbox {{isItemSelected(item.id || item._id) ? 'checked' : ''}}"></view>
+          </view>
+          <text class="word-col">{{item.word}}</text>
+          <text class="pinyin-col">{{item.pinyin || '-'}}</text>
+          <view class="status-col">
+            <view class="status-badge {{item.audioFileId ? 'has-audio' : 'no-audio'}}">
+              {{item.audioFileId ? '有录音' : '无录音'}}
+            </view>
+          </view>
+          <view class="action-col">
+            <block wx:if="{{!isSelectionMode}}">
+              <block wx:if="{{item.audioFileId}}">
+                <view class="action-button play-button" catchtap="playAudio" data-word="{{item.word}}">
+                  <text>播放</text>
+                </view>
+                <view class="action-button delete-button" catchtap="deleteSingleAudio" data-word="{{item.word}}" data-word-id="{{item.id || item._id}}">
+                  <text>删除</text>
+                </view>
+              </block>
+              <view 
+                class="action-button edit-button"
+                catchtap="goToWordDetail"
+                data-wordid="{{item.id || item._id}}"
+                data-word="{{item.word}}"
+              >
+                <text>编辑</text>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 分页控制 -->
+      <view class="pagination">
+        <view 
+          class="page-button {{currentPage === 1 ? 'disabled' : ''}}"
+          bindtap="prevPage"
+        >
+          上一页
+        </view>
+        <text class="page-info">{{currentPage}}/{{totalPages}}</text>
+        <view 
+          class="page-button {{currentPage === totalPages ? 'disabled' : ''}}"
+          bindtap="nextPage"
+        >
+          下一页
+        </view>
+      </view>
+    </block>
+  </view>
+</view> 

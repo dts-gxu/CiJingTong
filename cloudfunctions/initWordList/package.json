@@ -1,0 +1,14 @@
+{
+  "name": "initWordList",
+  "version": "1.0.0",
+  "description": "初始化word_list表，用于拼音练习",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  }
+} 

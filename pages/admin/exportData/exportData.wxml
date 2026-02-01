@@ -1,0 +1,106 @@
+<view class="container">
+  <view class="page-header">
+    <view class="page-title">导出学习数据</view>
+    <view class="page-desc">导出学生学习数据用于分析和报告</view>
+  </view>
+
+  <view class="export-options">
+    <view class="section-title">导出选项</view>
+    
+    <!-- 文件格式 -->
+    <view class="option-group">
+      <view class="option-label">文件格式</view>
+      <radio-group class="radio-group" bindchange="handleRadioChange" data-field="format">
+        <label class="radio-label">
+          <radio value="excel" checked="{{exportOptions.format === 'excel'}}" color="#a67c52" />
+          <text>Excel格式</text>
+        </label>
+        <label class="radio-label">
+          <radio value="csv" checked="{{exportOptions.format === 'csv'}}" color="#a67c52" />
+          <text>CSV格式</text>
+        </label>
+      </radio-group>
+    </view>
+    
+    <!-- 学生范围 -->
+    <view class="option-group">
+      <view class="option-label">学生范围</view>
+      <radio-group class="radio-group" bindchange="handleRadioChange" data-field="dataType">
+        <label class="radio-label">
+          <radio value="all" checked="{{exportOptions.dataType === 'all'}}" color="#a67c52" />
+          <text>所有学生</text>
+        </label>
+        <label class="radio-label">
+          <radio value="active" checked="{{exportOptions.dataType === 'active'}}" color="#a67c52" />
+          <text>活跃学生</text>
+        </label>
+        <label class="radio-label">
+          <radio value="inactive" checked="{{exportOptions.dataType === 'inactive'}}" color="#a67c52" />
+          <text>不活跃学生</text>
+        </label>
+      </radio-group>
+    </view>
+    
+    <!-- 时间范围 -->
+    <view class="option-group">
+      <view class="option-label">时间范围</view>
+      <radio-group class="radio-group" bindchange="handleRadioChange" data-field="period">
+        <label class="radio-label">
+          <radio value="all" checked="{{exportOptions.period === 'all'}}" color="#a67c52" />
+          <text>全部时间</text>
+        </label>
+        <label class="radio-label">
+          <radio value="7days" checked="{{exportOptions.period === '7days'}}" color="#a67c52" />
+          <text>最近7天</text>
+        </label>
+        <label class="radio-label">
+          <radio value="30days" checked="{{exportOptions.period === '30days'}}" color="#a67c52" />
+          <text>最近30天</text>
+        </label>
+        <label class="radio-label">
+          <radio value="90days" checked="{{exportOptions.period === '90days'}}" color="#a67c52" />
+          <text>最近90天</text>
+        </label>
+      </radio-group>
+    </view>
+    
+    <!-- 详细记录 -->
+    <view class="option-group">
+      <view class="option-label">包含详细学习记录</view>
+      <switch checked="{{exportOptions.includeDetails}}" bindchange="handleSwitchChange" data-field="includeDetails" color="#a67c52" />
+      <text class="option-desc">包含每个学生的单词学习详情和复习记录</text>
+    </view>
+  </view>
+
+  <!-- 导出结果 -->
+  <view class="result-area" wx:if="{{exportSuccess || exportError}}">
+    <view class="success-message" wx:if="{{exportSuccess}}">
+      <icon type="success" size="24"></icon>
+      <text>导出成功！</text>
+      <button class="btn-open" bindtap="openFile">打开文件</button>
+    </view>
+    
+    <view class="error-message" wx:if="{{exportError}}">
+      <icon type="warn" size="24"></icon>
+      <text>{{exportError}}</text>
+    </view>
+  </view>
+
+  <!-- 导出说明 -->
+  <view class="export-guide">
+    <view class="guide-title">导出说明</view>
+    <view class="guide-content">
+      <view class="guide-item">1. Excel格式适合在电脑上查看和分析</view>
+      <view class="guide-item">2. 活跃学生指一周内有登录记录的学生</view>
+      <view class="guide-item">3. 导出的文件将保存在本地，可以通过微信文件管理查看</view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="footer">
+    <button class="btn btn-export" bindtap="exportData" loading="{{isLoading}}" disabled="{{isLoading}}">
+      {{isLoading ? '导出中...' : '开始导出'}}
+    </button>
+    <button class="btn btn-back" bindtap="goBack">返回</button>
+  </view>
+</view> 

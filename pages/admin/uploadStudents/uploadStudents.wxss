@@ -1,0 +1,166 @@
+/* pages/admin/uploadStudents/uploadStudents.wxss */
+.container {
+  padding: 30rpx;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header {
+  margin-bottom: 40rpx;
+}
+
+.page-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.page-desc {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.upload-area {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.file-info {
+  padding: 20rpx;
+  background-color: #f0f9ff;
+  border-radius: 8rpx;
+  margin-bottom: 30rpx;
+}
+
+.file-name {
+  font-size: 28rpx;
+  color: #4a90e2;
+  word-break: break-all;
+}
+
+.file-placeholder {
+  height: 150rpx;
+  border: 2rpx dashed #ccc;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.placeholder-text {
+  font-size: 32rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.file-format {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.btn {
+  flex: 1;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  border-radius: 8rpx;
+}
+
+.btn-select {
+  background-color: #f0f0f0;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.btn-upload {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+.btn-upload[disabled] {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.result-area {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.success-message, .error-message {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-radius: 8rpx;
+}
+
+.success-message {
+  background-color: #f0fff0;
+}
+
+.error-message {
+  background-color: #fff0f0;
+}
+
+.success-message icon, .error-message icon {
+  margin-right: 10rpx;
+}
+
+.success-message text {
+  color: #4caf50;
+}
+
+.error-message text {
+  color: #f44336;
+}
+
+.format-guide {
+  background-color: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.guide-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.guide-content {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.guide-item {
+  margin-bottom: 10rpx;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 30rpx;
+}
+
+.btn-back {
+  background-color: #f0f0f0;
+  color: #333;
+} 

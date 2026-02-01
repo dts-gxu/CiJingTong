@@ -1,0 +1,49 @@
+<view class="container">
+  <view class="page-header">
+    <view class="page-title">上传学生名单</view>
+    <view class="page-desc">上传Excel表格批量导入学生信息</view>
+  </view>
+
+  <view class="upload-area">
+    <view class="file-info" wx:if="{{fileSelected}}">
+      <view class="file-name">已选择：{{fileName}}</view>
+    </view>
+
+    <view class="file-placeholder" wx:else>
+      <view class="placeholder-text">请选择Excel文件</view>
+      <view class="file-format">支持 .xlsx, .xls, .csv 格式</view>
+    </view>
+
+    <view class="button-group">
+      <button class="btn btn-select" bindtap="chooseFile">选择文件</button>
+      <button class="btn btn-upload" bindtap="uploadFile" disabled="{{!fileSelected || isUploading}}">
+        {{isUploading ? '上传中...' : '上传文件'}}
+      </button>
+    </view>
+  </view>
+
+  <view class="result-area" wx:if="{{uploadSuccess || uploadError}}">
+    <view class="success-message" wx:if="{{uploadSuccess}}">
+      <icon type="success" size="24"></icon>
+      <text>导入成功！共导入 {{importedCount}} 名学生信息</text>
+    </view>
+    
+    <view class="error-message" wx:if="{{uploadError}}">
+      <icon type="warn" size="24"></icon>
+      <text>{{uploadError}}</text>
+    </view>
+  </view>
+
+  <view class="format-guide">
+    <view class="guide-title">文件格式说明</view>
+    <view class="guide-content">
+      <view class="guide-item">1. 表格必须包含以下列：学号、姓名、班级</view>
+      <view class="guide-item">2. 第一行应为列标题</view>
+      <view class="guide-item">3. 学号为必填且唯一</view>
+    </view>
+  </view>
+
+  <view class="footer">
+    <button class="btn btn-back" bindtap="goBack">返回</button>
+  </view>
+</view> 

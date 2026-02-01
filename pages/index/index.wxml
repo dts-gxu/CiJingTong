@@ -1,0 +1,77 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <!-- 标题卡片 -->
+  <view class="header-card" bindtap="tapAdminEntrance">
+    <view class="app-title">词境通</view>
+    <view class="app-subtitle">基于AI驱动的汉语词汇学习方案</view>
+  </view>
+  
+  <!-- 学习进度卡片 -->
+  <view class="stats-card">
+    <view class="section-title">学习进度</view>
+    <view class="stat-row">
+      <text class="stat-label">已学词语：</text>
+      <text class="stat-value">{{stats.learnedWords || 0}}</text>
+    </view>
+    <view class="stat-row">
+      <text class="stat-label">今日学习：</text>
+      <text class="stat-value">{{stats.todayLearned || 0}}/{{stats.todayTarget || 50}}</text>
+    </view>
+    <view class="stat-row">
+      <text class="stat-label">本次学习：</text>
+      <text class="stat-value">{{stats.sessionLearned || 0}}/{{stats.sessionTarget || 25}}</text>
+    </view>
+  </view>
+  
+  <!-- 词语状态卡片 -->
+  <view class="word-status-card">
+    <view class="section-title">词语状态</view>
+    <!-- 添加总词汇数量显示 -->
+    <view class="total-vocabulary">
+      <text>词汇总量: {{stats.totalVocabulary || 0}} 个</text>
+    </view>
+    <view class="status-grid">
+      <view class="status-item">
+        <text class="status-count orange">{{stats.reviewWords || 0}}</text>
+        <text class="status-label">待复习</text>
+      </view>
+      <view class="status-item">
+        <text class="status-count green">{{stats.stage0Words || 0}}</text>
+        <text class="status-label">未学习</text>
+      </view>
+      <view class="status-item">
+        <text class="status-count blue">{{stats.stage1Words || 0}}</text>
+        <text class="status-label">阶段1</text>
+      </view>
+    </view>
+    <view class="status-grid second-row">
+      <view class="status-item">
+        <text class="status-count blue">{{stats.stage2Words || 0}}</text>
+        <text class="status-label">阶段2</text>
+      </view>
+      <view class="status-item">
+        <text class="status-count blue">{{stats.stage3Words || 0}}</text>
+        <text class="status-label">阶段3</text>
+      </view>
+      <view class="status-item">
+        <text class="status-count blue">{{stats.stage4Words || 0}}</text>
+        <text class="status-label">阶段4</text>
+      </view>
+      <view class="status-item">
+        <text class="status-count purple">{{stats.stage5Words || 0}}</text>
+        <text class="status-label">阶段5</text>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 学习说明 -->
+  <view class="info-text">
+    每组7个词语，先学习后练习。系统会根据AI驱动的学习算法安排复习。
+  </view>
+  
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="action-button primary-button" bindtap="startLearning">开始学习</button>
+    <button class="action-button secondary-button" bindtap="viewStats">查看统计</button>
+  </view>
+</view>

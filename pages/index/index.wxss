@@ -1,0 +1,218 @@
+/**index.wxss**/
+
+.container {
+  padding: 30rpx;
+  background-color: #f8f4e6; /* 古风米黄色背景 */
+  min-height: 100vh;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.05"><path d="M0,0 L100,0 L100,100 L0,100 Z" stroke="%23987543" stroke-width="1" fill="none" /></svg>');
+  background-size: 40rpx 40rpx;
+}
+
+.header-card {
+  background-color: #fff9e6;
+  border-radius: 12rpx;
+  padding: 40rpx 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 6rpx 16rpx rgba(122, 93, 59, 0.18);
+  text-align: center;
+  border: 2px solid #d9c7a7;
+  position: relative;
+}
+
+.header-card::before {
+  content: '';
+  position: absolute;
+  top: 12rpx;
+  left: 12rpx;
+  right: 12rpx;
+  bottom: 12rpx;
+  border: 1px dashed rgba(122, 93, 59, 0.2);
+  pointer-events: none;
+  border-radius: 6rpx;
+}
+
+.app-title {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #4a3520;
+  margin-bottom: 15rpx;
+  font-family: 'KaiTi', '楷体', serif;
+  letter-spacing: 6rpx;
+}
+
+.app-subtitle {
+  font-size: 30rpx;
+  color: #7a5d3b;
+  font-family: 'SimSun', '宋体', serif;
+}
+
+.stats-card {
+  background-color: #fff9e6;
+  border-radius: 12rpx;
+  padding: 30rpx 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 6rpx 16rpx rgba(122, 93, 59, 0.18);
+  border: 2px solid #d9c7a7;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #4a3520;
+  margin-bottom: 20rpx;
+  font-family: 'KaiTi', '楷体', serif;
+  letter-spacing: 4rpx;
+  position: relative;
+  padding-left: 20rpx;
+  border-left: 6rpx solid #987543;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  padding-bottom: 15rpx;
+  border-bottom: 1px dashed rgba(122, 93, 59, 0.2);
+}
+
+.stat-row:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.stat-label {
+  font-size: 30rpx;
+  color: #7a5d3b;
+  font-family: 'SimSun', '宋体', serif;
+}
+
+.stat-value {
+  font-size: 30rpx;
+  color: #4a3520;
+  font-weight: bold;
+  font-family: 'KaiTi', '楷体', serif;
+}
+
+.word-status-card {
+  background-color: #fff9e6;
+  border-radius: 12rpx;
+  padding: 30rpx 20rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 6rpx 16rpx rgba(122, 93, 59, 0.18);
+  border: 2px solid #d9c7a7;
+}
+
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15rpx;
+  margin-top: 20rpx;
+}
+
+.status-grid.second-row {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 15rpx;
+}
+
+.status-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10rpx 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 8rpx;
+  border: 1px solid rgba(122, 93, 59, 0.2);
+}
+
+.status-count {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #987543;
+  margin-bottom: 5rpx;
+  font-family: 'KaiTi', '楷体', serif;
+}
+
+.status-count.orange {
+  color: #e67e22;
+}
+
+.status-count.green {
+  color: #27ae60;
+}
+
+.status-count.blue {
+  color: #3498db;
+}
+
+.status-count.purple {
+  color: #9b59b6;
+}
+
+.status-label {
+  font-size: 22rpx;
+  color: #7a5d3b;
+  font-family: 'SimSun', '宋体', serif;
+}
+
+.info-text {
+  font-size: 28rpx;
+  color: #7a5d3b;
+  line-height: 1.6;
+  text-align: center;
+  margin: 30rpx 0;
+  padding: 0 20rpx;
+  font-family: 'SimSun', '宋体', serif;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.action-button {
+  width: 48%;
+  height: 90rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12rpx;
+  font-size: 34rpx;
+  font-family: 'KaiTi', '楷体', serif;
+  letter-spacing: 6rpx;
+}
+
+.primary-button {
+  background-color: #987543;
+  color: #fff9e6;
+  border: 2px solid #7a5d3b;
+  box-shadow: 0 6rpx 12rpx rgba(122, 93, 59, 0.25);
+}
+
+.secondary-button {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #7a5d3b;
+  border: 2px solid #d9c7a7;
+}
+
+/* 修改总词汇数量显示的样式 */
+.total-vocabulary {
+  margin-bottom: 15rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: #7a5d3b;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 10rpx 15rpx;
+  border-radius: 8rpx;
+  border: 1px solid rgba(122, 93, 59, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 10rpx;
+}
+
+.total-vocabulary text {
+  font-weight: bold;
+  font-family: 'KaiTi', '楷体', serif;
+}

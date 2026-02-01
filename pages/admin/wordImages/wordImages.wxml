@@ -1,0 +1,67 @@
+<!--pages/admin/wordImages/wordImages.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">词语图片管理</text>
+  </view>
+  
+  <view class="actions">
+    <button class="action-button" bindtap="uploadWordImages" disabled="{{isLoading}}">上传词语图片</button>
+    <button class="action-button" bindtap="updateWordImagePaths" disabled="{{isLoading}}">更新词语图片路径</button>
+    <button class="action-button back-button" bindtap="goBack" disabled="{{isLoading}}">返回</button>
+  </view>
+  
+  <view class="status-section" wx:if="{{hasUploaded}}">
+    <view class="section-header">
+      <text class="section-title">上传结果</text>
+    </view>
+    <view class="status-content">
+      <text class="status-text">成功上传: {{uploadResults.uploadedCount}} 个</text>
+      <text class="status-text">上传失败: {{uploadResults.failedCount}} 个</text>
+    </view>
+  </view>
+  
+  <view class="status-section" wx:if="{{hasUpdated}}">
+    <view class="section-header">
+      <text class="section-title">更新结果</text>
+    </view>
+    <view class="status-content">
+      <text class="status-text">成功更新: {{updateResults.updatedCount}} 个词语的图片路径</text>
+    </view>
+  </view>
+  
+  <view class="stats-section">
+    <view class="section-header">
+      <text class="section-title">词语图片统计</text>
+    </view>
+    <view class="status-content">
+      <text class="status-text">总词语数: {{words.length}}</text>
+      <text class="status-text">已有图片词语: {{wordsWithImages.length}}</text>
+      <text class="status-text">无图片词语: {{wordsWithoutImages.length}}</text>
+    </view>
+  </view>
+  
+  <view class="word-list-section" wx:if="{{wordsWithImages.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">已有图片的词语</text>
+    </view>
+    <view class="word-list">
+      <view class="word-item" wx:for="{{wordsWithImages}}" wx:key="_id">
+        <text class="word-text">{{item.word}}</text>
+        <image class="word-image" src="{{item.imagePath}}" mode="aspectFit" lazy-load binderror="handleImageError" data-word="{{item.word}}"></image>
+      </view>
+    </view>
+  </view>
+  
+  <view class="word-list-section" wx:if="{{wordsWithoutImages.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">无图片的词语</text>
+    </view>
+    <view class="word-list">
+      <view class="word-item no-image" wx:for="{{wordsWithoutImages}}" wx:key="_id">
+        <text class="word-text">{{item.word}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <loading wx:if="{{isLoading}}">加载中...</loading>
+</view> 

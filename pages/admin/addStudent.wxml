@@ -1,0 +1,34 @@
+<!--pages/admin/addStudent.wxml-->
+<view class="container">
+  <view class="form-card">
+    <view class="title">添加白名单学生</view>
+    <view class="subtitle">请填写学生信息</view>
+    
+    <view class="form-item">
+      <view class="form-label">学号</view>
+      <input class="form-input" type="text" placeholder="请输入学号" value="{{studentId}}" bindinput="onInputChange" data-field="studentId" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">姓名</view>
+      <input class="form-input" type="text" placeholder="请输入姓名" value="{{name}}" bindinput="onInputChange" data-field="name" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">院系</view>
+      <input class="form-input" type="text" placeholder="请输入院系" value="{{department}}" bindinput="onInputChange" data-field="department" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">专业</view>
+      <input class="form-input" type="text" placeholder="请输入专业" value="{{major}}" bindinput="onInputChange" data-field="major" />
+    </view>
+    
+    <view class="error-message" wx:if="{{errorMessage}}">{{errorMessage}}</view>
+    
+    <view class="button-group">
+      <button class="cancel-button" bindtap="cancel">取消</button>
+      <button class="submit-button" bindtap="submitForm" loading="{{isLoading}}">添加</button>
+    </view>
+  </view>
+</view> 

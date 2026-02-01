@@ -1,0 +1,159 @@
+<!--pages/user/user.wxml-->
+<view class="container">
+  <!-- 用户信息头部 -->
+  <view class="user-header">
+    <view class="avatar-container">
+      <image class="user-avatar" src="{{userInfo.avatar || '/images/default_avatar.png'}}" mode="aspectFill"></image>
+    </view>
+    <view class="user-info">
+      <view class="user-name">{{userInfo.name || '张三'}}</view>
+      <view class="user-id">学号：{{userInfo.studentId || '20230001'}}</view>
+      <view class="user-level">水平：{{quickStats.currentStage === 'beginner' ? '初学者' : quickStats.currentStage === 'intermediate' ? '中级' : '高级'}}</view>
+    </view>
+  </view>
+  
+  <!-- 快速统计（非重复功能） -->
+  <view class="quick-stats">
+    <view class="stats-item">
+      <view class="stats-value">{{quickStats.todayStreak}}</view>
+      <view class="stats-label">今日打卡</view>
+    </view>
+    <view class="stats-item">
+      <view class="stats-value">{{quickStats.totalDays}}</view>
+      <view class="stats-label">累计天数</view>
+    </view>
+  </view>
+  
+  <!-- 复习提醒 -->
+  <view class="review-section" wx:if="{{learningSettings.reviewReminder && reviewReminders.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">📅 复习提醒</text>
+      <text class="review-count">{{reviewReminders.length}}个词待复习</text>
+    </view>
+    <view class="review-reminder">
+      <view class="reminder-text">有词语需要复习啦！</view>
+      <button class="review-btn" bindtap="startReview" size="mini" type="primary">立即复习</button>
+    </view>
+  </view>
+  
+  <!-- 成就系统 -->
+  <view class="achievements-section">
+    <view class="section-header">
+      <text class="section-title">🏆 我的成就</text>
+      <text class="view-all-btn" bindtap="viewAllAchievements">查看全部</text>
+    </view>
+    <view class="achievements-grid">
+      <view class="achievement-item {{item.unlocked ? 'unlocked' : 'locked'}}" wx:for="{{achievements}}" wx:key="id">
+        <view class="achievement-icon">{{item.icon}}</view>
+        <view class="achievement-info">
+          <view class="achievement-title">{{item.title}}</view>
+          <view class="achievement-desc">{{item.description}}</view>
+        </view>
+        <view class="achievement-status">
+          <text class="status-text">{{item.unlocked ? '已获得' : '未获得'}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 功能菜单 -->
+  <view class="menu-card">
+    <view class="menu-item" bindtap="openLearningSettings">
+      <image class="menu-icon" src="/images/icon_edit.png" mode="aspectFit"></image>
+      <text class="menu-text">学习偏好设置</text>
+      <view class="menu-detail">
+        <text class="detail-text">目标: {{learningSettings.dailyTarget}}词/日</text>
+      </view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    
+    <view class="menu-item" bindtap="viewLearningHistory">
+      <image class="menu-icon" src="/images/icon_stats.png" mode="aspectFit"></image>
+      <text class="menu-text">学习历史</text>
+      <view class="menu-detail">
+        <text class="detail-text">查看详细统计</text>
+      </view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    
+    <view class="menu-item" bindtap="openDataManagement">
+      <image class="menu-icon" src="/images/icon_service.png" mode="aspectFit"></image>
+      <text class="menu-text">数据管理</text>
+      <view class="menu-detail">
+        <text class="detail-text">导出/清理/重置</text>
+      </view>
+      <view class="arrow-icon">〉</view>
+    </view>
+    
+    <view class="menu-item" bindtap="aboutUs">
+      <image class="menu-icon" src="/images/icon_about.png" mode="aspectFit"></image>
+      <text class="menu-text">关于我们</text>
+      <view class="arrow-icon">〉</view>
+    </view>
+    
+    <view class="menu-item" bindtap="contactService">
+      <image class="menu-icon" src="/images/icon_service.png" mode="aspectFit"></image>
+      <text class="menu-text">联系客服</text>
+      <view class="arrow-icon">〉</view>
+    </view>
+  </view>
+  
+  <!-- 学习偏好快速开关 -->
+  <view class="settings-toggles">
+    <view class="toggle-item">
+      <text class="toggle-label">复习提醒</text>
+      <switch checked="{{learningSettings.reviewReminder}}" bindchange="toggleReviewReminder" color="#4A90E2"/>
+    </view>
+    <view class="toggle-item">
+      <text class="toggle-label">声音开关</text>
+      <switch checked="{{learningSettings.soundEnabled}}" bindchange="toggleSound" color="#4A90E2"/>
+    </view>
+
+  </view>
+  
+  <!-- 退出登录按钮 -->
+  <button class="logout-button" bindtap="logout">退出登录</button>
+  
+  <!-- 页脚 -->
+  <view class="footer">
+    词境通 v1.0.0 © 2025
+  </view>
+
+  <!-- 全部成就弹窗 - 简化版 -->
+  <view class="achievements-modal-simple" wx:if="{{showAllAchievements}}" bindtap="closeAllAchievements">
+    <view class="modal-simple-content" catchtap="">
+      <!-- 标题栏 -->
+      <view class="simple-header">
+        <text class="simple-title">🏆 全部成就 ({{achievementStats.unlockedCount}}/{{achievementStats.totalCount}})</text>
+        <view class="simple-close" bindtap="closeAllAchievements">×</view>
+      </view>
+      
+      <!-- 成就列表 - 直接渲染，不用scroll-view -->
+      <view class="simple-achievements">
+        <!-- 全部成就 - 不分类，直接全部显示 -->
+        <view class="simple-category">
+                     <view class="simple-category-title">🏆 全部成就 (共{{allAchievementsList.length}}个)</view>
+          <view class="simple-grid">
+            <view 
+              class="simple-achievement {{item.unlocked ? 'simple-unlocked' : 'simple-locked'}}" 
+              wx:for="{{allAchievementsList}}" 
+              wx:key="id"
+            >
+              <text class="simple-icon">{{item.icon}}</text>
+              <view class="simple-info">
+                <text class="simple-name">{{item.title}}</text>
+                <text class="simple-desc">{{item.description}}</text>
+              </view>
+              <text class="simple-status">{{item.unlocked ? '✓' : '○'}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 底部按钮 -->
+      <view class="simple-footer">
+        <button class="simple-btn" bindtap="closeAllAchievements">知道了</button>
+      </view>
+    </view>
+  </view>
+</view> 

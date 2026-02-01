@@ -1,0 +1,9 @@
+{
+  "desc": "词境通",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+} 

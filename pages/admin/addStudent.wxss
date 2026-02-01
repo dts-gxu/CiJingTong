@@ -1,0 +1,75 @@
+/* pages/admin/addStudent.wxss */
+
+.container {
+  padding: 30rpx;
+}
+
+.form-card {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.subtitle {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.form-item {
+  margin-bottom: 20rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  border: 1px solid #ddd;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.cancel-button {
+  width: 45%;
+  height: 88rpx;
+  background-color: #f5f5f5;
+  color: #666;
+  font-size: 32rpx;
+  border-radius: 8rpx;
+}
+
+.submit-button {
+  width: 45%;
+  height: 88rpx;
+  background-color: #4A90E2;
+  color: white;
+  font-size: 32rpx;
+  border-radius: 8rpx;
+} 

@@ -1,0 +1,225 @@
+<view class="container">
+  <view class="page-header">
+    <view class="page-title">添加词语</view>
+    <view class="page-desc">向系统添加新的学习词语</view>
+  </view>
+
+  <view class="tabs">
+    <view class="tab {{activeTab === 'single' ? 'active' : ''}}" bindtap="switchTab" data-tab="single">单个添加</view>
+    <view class="tab {{activeTab === 'batch' ? 'active' : ''}}" bindtap="switchTab" data-tab="batch">批量导入</view>
+  </view>
+
+  <!-- 单个添加表单 -->
+  <view class="form-container" wx:if="{{activeTab === 'single'}}">
+    <scroll-view scroll-y="true" class="form-scroll" enable-flex="true">
+      <!-- 基本信息 -->
+      <view class="form-section">
+        <view class="section-title">基本信息</view>
+        
+        <view class="form-group">
+          <text class="form-label">词语 <text class="required">*</text></text>
+          <input class="form-input" type="text" value="{{wordData.word}}" bindinput="handleInputChange" data-field="word" placeholder="请输入词语"/>
+        </view>
+        
+        <view class="form-group">
+          <text class="form-label">拼音 <text class="required">*</text></text>
+          <input class="form-input" type="text" value="{{wordData.pinyin}}" bindinput="handleInputChange" data-field="pinyin" placeholder="请输入拼音"/>
+        </view>
+        
+        <view class="form-group">
+          <text class="form-label">英语翻译</text>
+          <textarea class="form-textarea" value="{{wordData.translation}}" bindinput="handleInputChange" data-field="translation" placeholder="请输入英语翻译"></textarea>
+        </view>
+        
+        <view class="form-group">
+          <text class="form-label">土库曼语翻译</text>
+          <textarea class="form-textarea" value="{{wordData.turkmenTranslation}}" bindinput="handleInputChange" data-field="turkmenTranslation" placeholder="请输入土库曼语翻译"></textarea>
+        </view>
+      </view>
+      
+             <!-- 例句信息 -->
+       <view class="form-section">
+         <view class="section-title">例句</view>
+         
+         <view class="form-group">
+           <text class="form-label">例句</text>
+           <textarea class="form-textarea" value="{{wordData.example.chinese}}" bindinput="handleInputChange" data-field="example.chinese" placeholder="请输入例句"></textarea>
+         </view>
+       </view>
+      
+      <!-- 图片管理 -->
+      <view class="form-section">
+        <view class="section-title">词语图片</view>
+        <view class="image-section">
+          <view class="current-image" wx:if="{{wordData.imageUrl}}">
+            <text class="form-label">当前图片</text>
+            <view class="image-container">
+              <image class="word-image" src="{{wordData.imageUrl}}" mode="aspectFit"></image>
+              <view class="image-actions">
+                <button class="btn-danger btn-small" bindtap="deleteImage">删除图片</button>
+                <button class="btn-primary btn-small" bindtap="showImageUpload">更换图片</button>
+              </view>
+            </view>
+          </view>
+          
+          <view class="no-image" wx:else>
+            <text class="form-label">暂无图片</text>
+            <button class="btn-primary" bindtap="showImageUpload">上传图片</button>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 看词语选拼音练习 -->
+      <view class="form-section">
+        <view class="section-title">看词语选拼音</view>
+        <view class="quiz-options">
+          <view class="quiz-option">
+            <text class="option-label">A:</text>
+            <input class="form-input" type="text" value="{{wordData.pinyinQuiz.options.options[0].value}}" 
+                  data-index="0" bindinput="onPinyinOptionChange" placeholder="选项A"/>
+          </view>
+          <view class="quiz-option">
+            <text class="option-label">B:</text>
+            <input class="form-input" type="text" value="{{wordData.pinyinQuiz.options.options[1].value}}" 
+                  data-index="1" bindinput="onPinyinOptionChange" placeholder="选项B"/>
+          </view>
+          <view class="quiz-option">
+            <text class="option-label">C:</text>
+            <input class="form-input" type="text" value="{{wordData.pinyinQuiz.options.options[2].value}}" 
+                  data-index="2" bindinput="onPinyinOptionChange" placeholder="选项C"/>
+          </view>
+          <view class="quiz-option">
+            <text class="option-label">D:</text>
+            <input class="form-input" type="text" value="{{wordData.pinyinQuiz.options.options[3].value}}" 
+                  data-index="3" bindinput="onPinyinOptionChange" placeholder="选项D"/>
+          </view>
+          <view class="quiz-option">
+            <text class="option-label">正确答案:</text>
+            <picker class="form-picker" range="{{['A', 'B', 'C', 'D']}}" value="{{correctAnswerIndex}}" bindchange="onCorrectAnswerChange">
+              <view class="picker-value">{{['A', 'B', 'C', 'D'][correctAnswerIndex] || '请选择'}}</view>
+            </picker>
+          </view>
+        </view>
+      </view>
+      
+      <!-- 选词填空练习 -->
+      <view class="form-section">
+        <view class="section-title">选词填空</view>
+      
+      <view class="form-group">
+          <text class="form-label">完整句子</text>
+          <textarea class="form-textarea" value="{{wordData.fillBlank.sentence}}" bindinput="onFillBlankChange" data-field="sentence" placeholder="输入填空练习句子，使用（）表示填空位置"></textarea>
+        </view>
+        
+        <view class="form-group">
+          <text class="form-label">前缀</text>
+          <input class="form-input" type="text" value="{{wordData.fillBlank.prefix}}" bindinput="onFillBlankChange" data-field="prefix" placeholder="填空前的文字"/>
+        </view>
+        
+        <view class="form-group">
+          <text class="form-label">后缀</text>
+          <input class="form-input" type="text" value="{{wordData.fillBlank.suffix}}" bindinput="onFillBlankChange" data-field="suffix" placeholder="填空后的文字"/>
+        </view>
+        
+        <view class="form-group">
+          <text class="form-label">答案</text>
+          <input class="form-input" type="text" value="{{wordData.fillBlank.answer}}" bindinput="onFillBlankChange" data-field="answer" placeholder="填空的正确答案"/>
+        </view>
+      </view>
+      
+      <!-- 预览 -->
+      <view class="form-section">
+        <view class="section-title">预览</view>
+        <view class="preview-container">
+          <view class="preview-item">
+            <text class="preview-label">拼音题:</text>
+            <view class="preview-content">
+              <view>词语: {{wordData.word}}</view>
+              <view>A. {{wordData.pinyinQuiz.options.options[0].value}}</view>
+              <view>B. {{wordData.pinyinQuiz.options.options[1].value}}</view>
+              <view>C. {{wordData.pinyinQuiz.options.options[2].value}}</view>
+              <view>D. {{wordData.pinyinQuiz.options.options[3].value}}</view>
+              <view>正确答案: {{wordData.pinyinQuiz.options.correctOption}}</view>
+            </view>
+          </view>
+          
+          <view class="preview-item">
+            <text class="preview-label">填空题:</text>
+            <view class="preview-content">
+              <view>{{wordData.fillBlank.prefix}}（{{wordData.fillBlank.answer}}）{{wordData.fillBlank.suffix}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    
+    <!-- 错误和成功消息 -->
+    <view class="message-container">
+      <view class="error-message" wx:if="{{errorMessage}}">{{errorMessage}}</view>
+      <view class="success-message" wx:if="{{successMessage}}">{{successMessage}}</view>
+    </view>
+    
+    <!-- 操作按钮 -->
+      <view class="button-group">
+      <button class="btn btn-primary" bindtap="submitForm" loading="{{isSubmitting}}" disabled="{{isSubmitting}}">
+        {{isSubmitting ? '添加中...' : '添加词语'}}
+      </button>
+        <button class="btn btn-default" bindtap="goBack">返回</button>
+      </view>
+  </view>
+
+  <!-- 批量导入表单 -->
+  <view class="batch-container" wx:if="{{activeTab === 'batch'}}">
+    <view class="upload-area">
+      <view class="format-guide">
+        <view class="guide-title">导入说明：</view>
+        <view class="guide-item">1. 请按照以下表头准备Excel文件：词语、拼音、英语翻译、土库曼语翻译、例句、看词语选拼音、选词填空</view>
+        <view class="guide-item">2. 词语和拼音为必填项，其他列可选填</view>
+        <view class="guide-item">3. 看词语选拼音格式：A选项|B选项|C选项|D选项|正确答案(如: A)</view>
+        <view class="guide-item">4. 选词填空格式：完整句子|前缀|后缀|答案</view>
+        <view class="guide-item">5. 文件格式支持.xlsx、.xls、.csv</view>
+      </view>
+      
+      <view class="file-info">
+        <view wx:if="{{fileSelected}}" class="file-name">已选择: {{fileName}}</view>
+        <view wx:else class="file-placeholder">未选择文件</view>
+      </view>
+      
+      <button class="btn-select" bindtap="chooseFile">选择文件</button>
+      <button class="btn-upload" bindtap="uploadFile" disabled="{{!fileSelected || isUploading}}">
+        {{isUploading ? '上传中...' : '上传并导入'}}
+      </button>
+      
+      <view wx:if="{{uploadSuccess}}" class="success-message">
+        导入成功！共导入 {{importedCount}} 条词语数据
+      </view>
+      <view wx:if="{{uploadError}}" class="error-message">
+        {{uploadError}}
+      </view>
+    </view>
+  </view>
+  
+  <!-- 图片上传弹窗 -->
+  <view class="modal" wx:if="{{showImageUpload}}">
+    <view class="modal-content image-upload-modal">
+      <view class="modal-header">
+        <text class="modal-title">上传图片</text>
+        <text class="modal-close" bindtap="hideImageUpload">×</text>
+      </view>
+      
+      <view class="modal-body">
+        <view class="upload-info">
+          <text>请选择词语"{{wordData.word}}"的图片</text>
+        </view>
+        <view class="upload-actions">
+          <button class="btn-primary upload-btn" bindtap="chooseImage">选择图片</button>
+        </view>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn-cancel" bindtap="hideImageUpload">取消</button>
+      </view>
+    </view>
+  </view>
+
+</view> 

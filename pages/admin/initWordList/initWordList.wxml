@@ -1,0 +1,46 @@
+<!--pages/admin/initWordList/initWordList.wxml-->
+<view class="container">
+  <view class="header">
+    <text class="title">词汇表初始化</text>
+  </view>
+  
+  <view class="content">
+    <view class="section">
+      <text class="section-title">从本地文件导入</text>
+      <view class="description">选择本地JSON文件导入词汇数据</view>
+      <button class="primary-button" bindtap="chooseLocalFile" disabled="{{isLoading}}">选择文件</button>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">从词语库导入</text>
+      <view class="description">从现有词语库初始化word_list表</view>
+      <view class="checkbox-item" bindtap="toggleForceReset">
+        <checkbox checked="{{forceReset}}" />
+        <text>强制重置现有数据</text>
+      </view>
+      <button class="primary-button" bindtap="initWordList" disabled="{{isLoading}}">初始化词汇表</button>
+    </view>
+    
+    <view class="section">
+      <text class="section-title">导入拼音练习题</text>
+      <view class="description">从pinyin.json文件导入拼音练习题</view>
+      <view class="checkbox-item" bindtap="toggleForceResetPinyin">
+        <checkbox checked="{{forceResetPinyin}}" />
+        <text>强制重置现有拼音题</text>
+      </view>
+      <button class="primary-button" bindtap="importPinyinQuiz" disabled="{{isLoading}}">导入拼音练习题</button>
+    </view>
+    
+    <view class="result-section" wx:if="{{result}}">
+      <text class="section-title">操作结果</text>
+      <view class="result-content {{result.success ? 'success' : 'error'}}">
+        <text>{{result.message}}</text>
+        <text wx:if="{{result.insertCount}}">成功导入: {{result.insertCount}} 条记录</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <button class="secondary-button" bindtap="goBack">返回</button>
+  </view>
+</view> 

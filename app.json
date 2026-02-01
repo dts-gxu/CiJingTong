@@ -1,0 +1,64 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/learn/learn",
+    "pages/practice/practice",
+    "pages/result/result",
+    "pages/stats/stats",
+    "pages/user/user",
+    "pages/assistant/assistant",
+    "pages/admin/admin",
+    "pages/admin/addStudent",
+    "pages/admin/addWord/addWord",
+    "pages/admin/uploadStudents/uploadStudents",
+    "pages/admin/studentData/studentData",
+    "pages/admin/exportData/exportData",
+    "pages/admin/wordManage/wordManage",
+    "pages/admin/wordImages/wordImages",
+    "pages/admin/initWordList/initWordList",
+    "pages/admin/wordAudio/wordAudio"
+  ],
+  "subpackages": [],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#4A90E2",
+    "navigationBarTitleText": "词境通",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#4A90E2",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "学习",
+        "iconPath": "images/icon_learn.png",
+        "selectedIconPath": "images/icon_learn.png"
+      },
+      {
+        "pagePath": "pages/stats/stats",
+        "text": "统计",
+        "iconPath": "images/icon_stats.png",
+        "selectedIconPath": "images/icon_stats.png"
+      },
+      {
+        "pagePath": "pages/assistant/assistant",
+        "text": "助手",
+        "iconPath": "images/icon_assistant.png",
+        "selectedIconPath": "images/icon_assistant.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/icon_user.png",
+        "selectedIconPath": "images/icon_user.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+} 

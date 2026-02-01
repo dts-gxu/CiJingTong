@@ -1,0 +1,74 @@
+<!--pages/admin/admin.wxml-->
+<view class="container">
+  <!-- 登录表单 -->
+  <block wx:if="{{!isLoggedIn}}">
+    <view class="admin-login-card">
+      <view class="header">
+        <view class="title">管理员登录</view>
+      </view>
+      
+      <view class="form-group">
+        <input class="input" type="text" placeholder="请输入管理员用户名" bindinput="onUsernameInput" value="{{adminUsername}}" />
+        <input class="input" type="password" password="true" placeholder="请输入管理员密码" bindinput="onInputChange" value="{{adminPassword}}" />
+        <view class="error-message" wx:if="{{errorMessage}}">{{errorMessage}}</view>
+      </view>
+      
+      <button class="login-btn {{isLoading ? 'loading' : ''}}" bindtap="adminLogin" disabled="{{isLoading}}">
+        {{isLoading ? '登录中...' : '登录'}}
+      </button>
+      
+      <view class="back-link" bindtap="backToHome">返回首页</view>
+    </view>
+  </block>
+
+  <!-- 管理界面 -->
+  <block wx:else>
+    <view class="header">
+      <view class="title">管理员控制台</view>
+    </view>
+    
+    <view class="admin-menu">
+      <view class="menu-item" bindtap="navigateToStudentData">
+        <view class="menu-icon">
+          <text class="icon-text">👨‍🎓</text>
+        </view>
+        <text class="menu-text">学生数据管理</text>
+      </view>
+      
+      <view class="menu-item" bindtap="navigateToInitWordList">
+        <view class="menu-icon">
+          <text class="icon-text">📚</text>
+        </view>
+        <text class="menu-text">词汇表初始化</text>
+      </view>
+      
+      <view class="menu-item" bindtap="navigateToUploadStudents">
+        <text class="menu-icon">📋</text>
+        <text class="menu-text">上传学生名单</text>
+        <text class="menu-arrow">></text>
+      </view>
+      
+      <view class="menu-item" bindtap="navigateToAddWord">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">添加词语</text>
+        <text class="menu-arrow">></text>
+      </view>
+      
+      <view class="menu-item" bindtap="navigateToWordManage">
+        <text class="menu-icon">📖</text>
+        <text class="menu-text">管理词语</text>
+        <text class="menu-arrow">></text>
+      </view>
+      
+      <view class="menu-item" bindtap="clearUserData">
+        <text class="menu-icon">🗑️</text>
+        <text class="menu-text">清除用户数据</text>
+        <text class="menu-arrow">></text>
+      </view>
+    </view>
+    
+    <view class="footer">
+      <button class="logout-btn" bindtap="logout">退出登录</button>
+    </view>
+  </block>
+</view> 
